@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #080808; 
+}
+
+.colored-label {
+  color: #c2c3c4;
+}
+
+.spaced-input {
+  padding: 20px;
+}
