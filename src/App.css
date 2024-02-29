@@ -50,3 +50,7 @@ body {
 .spaced-input {
   padding: 20px;
 }
+
+.colored-card {
+  background-color: #273136;
+}
