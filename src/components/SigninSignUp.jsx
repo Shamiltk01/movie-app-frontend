@@ -1,7 +1,31 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 
 
 const SigninSignUp = () => {
+
+  const [input,setInput]=useState({
+    logname:"",
+    logpass:"",
+    logemail:""
+  })
+  const signupHandler=(e)=>{
+    setInput({...input,[e.target.name]:e.target.value})
+  }
+  const signUpGet=()=>{
+    axios.post("http://localhost:3001/user/signup",input).then((response)=>{
+      console.log(response.data)
+      alert(response.data.status)
+    })
+  }
+
+  const signInGet=()=>{
+    axios.post("http://localhost:3001/user/signin",input).then((response)=>{
+      console.log(response.data)
+      alert(response.data.status)
+    })
+  }
+  
   const [isSignUp, setIsSignUp] = useState(false);
 
   const toggleForm = () => {
@@ -13,7 +37,7 @@ const SigninSignUp = () => {
       <a href="#" className="logo" target="_blank">
         <img src="https://static.vecteezy.com/system/resources/previews/011/934/381/original/gold-home-icon-free-png.png" alt="" />
       </a>
-      
+
 
       <div className="container">
         <div className="row full-height justify-content-center">
@@ -46,6 +70,8 @@ const SigninSignUp = () => {
                             placeholder="Your Email"
                             id="logemail"
                             autoComplete="off"
+                            value={input.logemail}
+                            onChange={signupHandler}
                           />
                           <i className="input-icon uil uil-at"></i>
                         </div>
@@ -57,10 +83,12 @@ const SigninSignUp = () => {
                             placeholder="Your Password"
                             id="logpass"
                             autoComplete="off"
+                            value={input.logpass}
+                            onChange={signupHandler}
                           />
                           <i className="input-icon uil uil-lock-alt"></i>
                         </div>
-                        <button className="btn mt-4">Submit</button>
+                        <button className="btn mt-4" onClick={signInGet}>Submit</button>
                         <p className="mb-0 mt-4 text-center">
                           <a href="#0" className="link">
                             Forgot your password?
@@ -81,6 +109,8 @@ const SigninSignUp = () => {
                             placeholder="Your Full Name"
                             id="logname"
                             autoComplete="off"
+                            value={input.logname}
+                            onChange={signupHandler}
                           />
                           <i className="input-icon uil uil-user"></i>
                         </div>
@@ -92,6 +122,8 @@ const SigninSignUp = () => {
                             placeholder="Your Email"
                             id="logemail"
                             autoComplete="off"
+                            value={input.logemail}
+                            onChange={signupHandler}
                           />
                           <i className="input-icon uil uil-at"></i>
                         </div>
@@ -103,10 +135,12 @@ const SigninSignUp = () => {
                             placeholder="Your Password"
                             id="logpass"
                             autoComplete="off"
+                            value={input.logpass}
+                            onChange={signupHandler}
                           />
                           <i className="input-icon uil uil-lock-alt"></i>
                         </div>
-                        <button className="btn mt-4">Submit</button>
+                        <button className="btn mt-4" onClick={signUpGet}>Submit</button>
                       </div>
                     </div>
                   </div>
