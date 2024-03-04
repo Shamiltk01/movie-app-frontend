@@ -11,8 +11,9 @@ const SigninSignUp = () => {
   return (
     <div className={`section full-height ${isSignUp ? 'signup-mode' : ''}`}>
       <a href="#" className="logo" target="_blank">
-        <img src="https://assets.codepen.io/1462889/fcy.png" alt="" />
+        <img src="https://static.vecteezy.com/system/resources/previews/011/934/381/original/gold-home-icon-free-png.png" alt="" />
       </a>
+      
 
       <div className="container">
         <div className="row full-height justify-content-center">
