@@ -1,11 +1,18 @@
 
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
 import SignInSignUp from './components/SigninSignUp';
+=======
+import AdimAdd from './components/AdimAdd';
+import DeleteMovie from './components/DeleteMovie';
+import ViewBookings from './components/ViewBookings';
+
 
 function App() {
   return (
     <div>
+
 
       <BrowserRouter>
         <Routes>
@@ -14,6 +21,7 @@ function App() {
 
         </Routes>
       </BrowserRouter>
+
 
     </div>
   );

@@ -282,8 +282,28 @@ h6 span{
 	z-index: 100;
 	transition: all 250ms linear;
 }
+
 .logo img {
 	height: 26px;
 	width: auto;
 	display: block;
+=======
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #080808; 
+}
+
+.colored-label {
+  color: #c2c3c4;
+}
+
+.spaced-input {
+  padding: 20px;
+}
+
+.colored-card {
+  background-color: #273136;
+
 }
