@@ -3,15 +3,13 @@ import "./App.css";
 import Card2 from './components/Card2';
 import { BrowserRouter } from 'react-router-dom';
 import { Route, Routes } from 'react-router-dom/dist/umd/react-router-dom.development';
-import SignInSignUp from './components/SigninSignUp';
+import SigninSignUp from './components/SigninSignUp';
 import AdimAdd from './components/AdimAdd';
 import DeleteMovie from './components/DeleteMovie';
 import ViewBookings from './components/ViewBookings';
 import Intro from './components/Intro';
 import SingleMovie from './components/SingleMovie';
-import Intro from "./components/Intro";
 import AcceptUser from "./components/AcceptUser";
-import SigninSignUp from "./components/SigninSignUp";
 
 const App = () => {
   return (
