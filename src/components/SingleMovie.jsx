@@ -13,7 +13,7 @@ import '../styles/singlemovie.css'; // Adjust the path to your CSS file
 
 const SingleMovie = () => {
     return (
-        <div className="hero">
+        <div className="hero" style={{backgroundImage:`URL(https://images.hdqwalls.com/download/the-batman-2020-movie-poster-5k-gg-2560x1600.jpg)`}}>
             <div className="navbar">
                 <img src={logo} alt="" className="logo" />
                 <button type="button">Login / Register</button>
