@@ -1,4 +1,15 @@
+
 import React from 'react';
+
+
+import './App.css';
+
+import SignInSignUp from './components/SigninSignUp';
+
+import AdimAdd from './components/AdimAdd';
+import DeleteMovie from './components/DeleteMovie';
+import ViewBookings from './components/ViewBookings';
+
 
 import Card2 from './components/Card2';
 import { BrowserRouter } from 'react-router-dom';
@@ -6,12 +17,20 @@ import { Route, Routes } from 'react-router-dom/dist/umd/react-router-dom.develo
 import NavBar from './components/NavBar';
 import Intro from './components/Intro';
 
+
 const App = () => {
   return (
 <div>
-  <BrowserRouter>
-  <Routes>
-    <Route path="/" element={<><Intro/><Card2/></>}/>
+
+      <BrowserRouter>
+        <Routes>
+
+            <Route path="/" element={<SignInSignUp />}/>
+
+        </Routes>
+      </BrowserRouter>
+
+
 
  
   </Routes>
