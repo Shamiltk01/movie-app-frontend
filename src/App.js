@@ -1,14 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
 
-function App() {
+import Card2 from './components/Card2';
+import { BrowserRouter } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom/dist/umd/react-router-dom.development';
+import NavBar from './components/NavBar';
+import Intro from './components/Intro';
+
+const App = () => {
   return (
-    <div>
+<div>
+  <BrowserRouter>
+  <Routes>
+    <Route path="/" element={<><Intro/><Card2/></>}/>
 
-      
-
-    </div>
+ 
+  </Routes>
+  </BrowserRouter>
+</div>
   );
-}
+};
 
 export default App;
