@@ -1,18 +1,26 @@
 
+import React from 'react';
+
+
 import './App.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import SignInSignUp from './components/SigninSignUp';
-=======
+
 import AdimAdd from './components/AdimAdd';
 import DeleteMovie from './components/DeleteMovie';
 import ViewBookings from './components/ViewBookings';
 
 
-function App() {
-  return (
-    <div>
+import Card2 from './components/Card2';
+import { BrowserRouter } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom/dist/umd/react-router-dom.development';
+import NavBar from './components/NavBar';
+import Intro from './components/Intro';
 
+
+const App = () => {
+  return (
+<div>
 
       <BrowserRouter>
         <Routes>
@@ -23,8 +31,12 @@ function App() {
       </BrowserRouter>
 
 
-    </div>
+
+ 
+  </Routes>
+  </BrowserRouter>
+</div>
   );
-}
+};
 
 export default App;
