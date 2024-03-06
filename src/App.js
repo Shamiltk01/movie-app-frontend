@@ -16,6 +16,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Route, Routes } from 'react-router-dom/dist/umd/react-router-dom.development';
 
 import Intro from './components/Intro';
+import SingleMovie from './components/SingleMovie';
 
 
 const App = () => {
@@ -29,6 +30,8 @@ const App = () => {
             <Route path="/moviebooking" element={<AdimAdd/>}/>
             <Route path="/deletemovie" element={<DeleteMovie/>}/>
             <Route path="/viewbooking" element={<ViewBookings/>}/>
+            <Route path="/smovie" element={<SingleMovie/>}/>
+            <Route path="/signin" element={<SignInSignUp/>}/>
 
         </Routes>
       </BrowserRouter>
