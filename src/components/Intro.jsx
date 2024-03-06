@@ -19,7 +19,7 @@ const Intro = () => {
             sort_by: 'release_date.desc', // Sort by release date in descending order
             include_adult: false,
             include_video: false,
-            page: 1
+            page: 2
           }
         });
         
