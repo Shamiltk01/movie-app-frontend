@@ -287,9 +287,9 @@ h6 span{
 	height: 26px;
 	width: auto;
 	display: block;
-=======
+}
 
-body {
+.body {
   margin: 0;
   padding: 0;
   background-color: #080808; 
