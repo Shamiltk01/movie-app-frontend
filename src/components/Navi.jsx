@@ -6,7 +6,7 @@ const Navi = () => {
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-gradient">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/">
+          <Link className="navbar-brand" to="#">
             <img
               src="https://www.shutterstock.com/image-vector/ticket-vector-icon-600w-691375591.jpg"
               alt="Logo"
@@ -35,12 +35,12 @@ const Navi = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/adminadd">
+                <Link className="nav-link" to="/moviebooking">
                   Add Movies
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/delete">
+                <Link className="nav-link" to="/deletemovie">
                   Delete Movies
                 </Link>
               </li>

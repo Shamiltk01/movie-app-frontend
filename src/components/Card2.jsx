@@ -1,23 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const Card2 = () => {
-  const [moviesData, setMoviesData] = useState([]); 
+  const [moviesData, setMoviesData] = useState([]);
 
   useEffect(() => {
     const fetchMovieData = async () => {
       try {
-        const movieNames = ['Bramayugam', 'Premalu', 'Manjummel Boys']; // Names of the movies you want to fetch
+        const movieNames = ["Bramayugam", "Premalu", "Manjummel Boys"]; // Names of the movies you want to fetch
         const movies = [];
 
         for (const name of movieNames) {
-          const response = await axios.get('https://api.themoviedb.org/3/search/movie', {
-            params: {
-              api_key: '775ffc67f20ef642f55ceb576824b014',
-              language: 'en-US',
-              query: name,
-            },
-          });
+          const response = await axios.get(
+            "https://api.themoviedb.org/3/search/movie",
+            {
+              params: {
+                api_key: "775ffc67f20ef642f55ceb576824b014",
+                language: "en-US",
+                query: name,
+              },
+            }
+          );
           if (response.data.results.length > 0) {
             movies.push(response.data.results[0]); // Add movie data to the array if found
           }
@@ -25,7 +28,7 @@ const Card2 = () => {
 
         setMoviesData(movies); // Set the movie data array
       } catch (error) {
-        console.error('Error fetching movie data:', error);
+        console.error("Error fetching movie data:", error);
       }
     };
 
@@ -33,20 +36,23 @@ const Card2 = () => {
   }, []);
   const fetchTrailer = async (movieId) => {
     try {
-      const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/videos`, {
-        params: {
-          api_key: '775ffc67f20ef642f55ceb576824b014',
-          language: 'en-US',
-        },
-      });
+      const response = await axios.get(
+        `https://api.themoviedb.org/3/movie/${movieId}/videos`,
+        {
+          params: {
+            api_key: "775ffc67f20ef642f55ceb576824b014",
+            language: "en-US",
+          },
+        }
+      );
       if (response.data.results.length > 0) {
         const trailerKey = response.data.results[0].key;
-        window.open(`https://www.youtube.com/watch?v=${trailerKey}`, '_blank');
+        window.open(`https://www.youtube.com/watch?v=${trailerKey}`, "_blank");
       } else {
-        console.log('No trailers found for this movie.');
+        console.log("No trailers found for this movie.");
       }
     } catch (error) {
-      console.error('Error fetching trailer:', error);
+      console.error("Error fetching trailer:", error);
     }
   };
   return (
@@ -170,16 +176,27 @@ const Card2 = () => {
       <div className="card1-group">
         {moviesData.map((movie, index) => (
           <div className="card1" key={movie.id}>
-            <div className="layer-text">{index === 0 ? 'Previous Movie' : index === 1 ? 'Now Playing' : 'Upcoming Movie'}</div>
-            <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} className="card1-img-top" alt={movie.title} />
-            <div className="card1-body">
-            <h5 className="card1-title">{movie.title}</h5>
-            <p className="card1-text">Release Date: {movie.release_date}</p>
-            <p className="card1-text">Vote Average: {movie.vote_average}</p>
-            
-              {index === 1 && <button className="btn-book-now">Book Now</button>}
+            <div className="layer-text">
+              {index === 0
+                ? "Previous Movie"
+                : index === 1
+                ? "Now Playing"
+                : "Upcoming Movie"}
             </div>
-            
+            <img
+              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+              className="card1-img-top"
+              alt={movie.title}
+            />
+            <div className="card1-body">
+              <h5 className="card1-title">{movie.title}</h5>
+              <p className="card1-text">Release Date: {movie.release_date}</p>
+              <p className="card1-text">Vote Average: {movie.vote_average}</p>
+
+              {index === 1 && (
+                <button className="btn-book-now">Book Now</button>
+              )}
+            </div>
           </div>
         ))}
       </div>
