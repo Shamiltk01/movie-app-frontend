@@ -14,15 +14,23 @@ const SigninSignUp = () => {
   }
   const signUpGet=()=>{
     axios.post("http://localhost:3001/user/signup",input).then((response)=>{
-      console.log(response.data)
-      alert(response.data.status)
+        alert(response.data.status)
+        setInput({
+          logname:"",
+          logpass:"",
+          logemail:""
+        })
     })
   }
 
   const signInGet=()=>{
     axios.post("http://localhost:3001/user/signin",input).then((response)=>{
-      console.log(response.data)
       alert(response.data.status)
+      setInput({
+        logname:"",
+        logpass:"",
+        logemail:""
+      })
     })
   }
   
