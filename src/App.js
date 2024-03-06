@@ -30,11 +30,6 @@ const App = () => {
         </Routes>
       </BrowserRouter>
 
-
-
- 
-  </Routes>
-  </BrowserRouter>
 </div>
   );
 };
