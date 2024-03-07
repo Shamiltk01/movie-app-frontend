@@ -9,7 +9,7 @@ const Card2 = () => {
     const fetchMovieData = async () => {
       try {
 
-        const movieNames = ['Anweshippin Kandethum', 'Manjummel Boys', 'Manjummel Boys']; // Names of the movies you want to fetch
+        const movieNames = ['Anweshippin Kandethum', 'Anjaam Pathira', 'Manjummel Boys']; // Names of the movies you want to fetch
 
         const movies = [];
 
@@ -37,8 +37,8 @@ const Card2 = () => {
 
     fetchMovieData();
   }, []);
-const navigate=useNavigate()
-  const handleBookNow = (movieId) => {
+  const navigate=useNavigate()
+  const handleViewMore = (movieId) => {
     sessionStorage.setItem("selectedMovieId", movieId); // Store movie ID in sessionStorage
     navigate("/smovie"); // Navigate to the SingleMovie page
   };
@@ -60,15 +60,17 @@ const navigate=useNavigate()
         .card1 {
           position: relative; /* Ensure proper stacking */
           border-radius: 15px; /* Rounded corners */
+          
           overflow: hidden; /* Ensures rounded corners apply */
           box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.5); /* Optional: Add shadow */
           flex-grow: 1; /* Allow cards to grow */
-          max-width: 300px; /* Set max-width to prevent card1s from stretching too much */
+          max-width: 300px; 
+          min-width:300px/* Set max-width to prevent card1s from stretching too much */
+          height: 100%; /* Make the card1 occupy the entire height */
           transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
-          background-color: black;
           display: flex; /* Use flexbox for positioning */
-          flex-direction: column; /* Align children vertically */
-          border: 2px solid rgba(255, 255, 255, 0.1); /* Add white border with reduced opacity */
+        
+          border: 2px solid rgba(255, 255, 255, 0); /* Add white border with reduced opacity */
           margin-bottom: 20px; /* Add margin to create space between card1s */
         }
 
@@ -88,28 +90,31 @@ const navigate=useNavigate()
 
         .card1 img {
           width: 100%; /* Make the image fill its container */
-          height: 350px; /* Set the desired height of the image */
+          height: 100%; /* Make the image fill the entire height of the card1 */
           object-fit: cover; /* Ensure the image covers the entire space */
           border-top-left-radius: 15px; /* Match the top-left border radius */
           border-top-right-radius: 15px; /* Match the top-right border radius */
+          margin: 0; /* Remove any default margin */
         }
 
-        .btn-book-now {
-          background-color: red;
-          color: white;
-          border: none;
+        .btn-view-more {
+          background-color: aquamarine;
+          color:black;
+          border: 1px solid white;
           padding: 0.5rem 1rem;
           border-radius: 5px;
           cursor: pointer;
-          align-self: center; /* Center horizontally */
-          z-index: 2; /* Ensure the button is above other elements */
-          position: relative; /* Ensure proper stacking */
+          position: absolute;
+          z-index: 999;
+          top: 92%; /* Position it vertically in the middle */
+          left: -300%; /* Position it horizontally in the middle */
+          transform: translate(-50%, -50%); /* Center it both vertically and horizontally */
         }
-
-        .btn-book-now:hover {
-          background-color: #0056b3;
+        .btn-view-more:hover {
+          background-color: white;
+          color: black;
         }
-
+      
         /* Layer styles */
         .card1::after {
           content: "";
@@ -157,20 +162,17 @@ const navigate=useNavigate()
         {moviesData.map((movie, index) => (
           <div className="card1" key={movie.id}>
             <div className="layer-text">
-
               {index === 0 ? 'Previous Movie' : index === 1 ? 'Now Playing' : 'Upcoming Movie'}
             </div>
-            <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} className="card1-img-top" alt={movie.title} />
+            <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} />
             <div className="card1-body">
-              <h5 className="card1-title">Movie:{movie.title}</h5>
               {/* <p className="card1-text">Release Date: {movie.release_date}</p>
               <p className="card1-text">Vote Average: {movie.vote_average}</p> */}
-             {index === 1 && (
-                <button className="btn-book-now" onClick={() => handleBookNow(movie.id)}>Book Now</button>
-             )}
-             
-       
-
+              {index === 1 && (
+                <>
+                  <button className="btn-view-more" onClick={() => handleViewMore(movie.id)}>View More</button>
+                </>
+              )}
             </div>
           </div>
         ))}
