@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios'; // Import axios for API requests
 import Card2 from './Card2'; // Import Cards2 component
+import Aboutus from './Aboutus'; // Import Aboutus component
 
 const Intro = () => {
   const [moviePosters, setMoviePosters] = useState([]); // State to store fetched movie posters
   const [currentPosterIndex, setCurrentPosterIndex] = useState(0); // State to track the index of the current poster
   const cards2Ref = useRef(null);
+  const aboutUsRef = useRef(null); // Ref for Aboutus component
 
   useEffect(() => {
     const fetchMoviePosters = async () => {
@@ -45,10 +47,13 @@ const Intro = () => {
 
   const handleScroll = () => {
     if (cards2Ref.current) {
-      window.scrollTo({
-        top: cards2Ref.current.offsetTop,
-        behavior: 'smooth'
-      });
+      cards2Ref.current.scrollIntoView({ behavior: 'smooth' ,block: 'start', inline: 'nearest' });
+    }
+  };
+
+  const handleFeaturesClick = () => {
+    if (aboutUsRef.current) {
+      aboutUsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
@@ -59,12 +64,12 @@ const Intro = () => {
           <div className="card mb-3" style={{ backgroundColor: 'transparent', border: 'none', borderRadius: '15px', padding: '20px' }}>
             <div className="row g-0">
               <div className="col-md-8">
-                <div className="card-body">
-                  <h1 className="card-title" style={{ fontSize: '6rem', color: 'white' }}>Welcome to <br/> Sagarika!</h1>
-                  <p style={{ color: 'white', textAlign: 'center', marginTop: '20px' }}>Experience the magic of cinema. Book your tickets now for an unforgettable movie night.</p>
+                <div className="card-body" style={{ color: 'white', fontFamily: 'Arial, sans-serif' }}>
+                  <h1 className="card-title" style={{ fontSize: '5rem', lineHeight: '1.2', marginBottom: '20px', fontFamily: 'Arial, sans-serif' }}>Welcome to <br /> Sagarika!</h1>
+                  <p style={{ textAlign: 'center', marginTop: '20px ', fontFamily: 'Arial, sans-serif' }}>Experience the magic of cinema. Book your tickets now for an unforgettable movie night.</p>
                   <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '40px' }}>
                     <button className="btn btn-success me-3" style={{ width: '200px' }} onClick={handleScroll}>View Movies</button>
-                    <button className="btn btn-primary" style={{ width: '200px', backgroundColor: 'transparent', borderColor: 'green', color: 'green', borderRadius: '50px' }}>Learn More</button>
+                    <button className="btn btn-primary" style={{ width: '200px', backgroundColor: 'transparent', borderColor: 'green', color: 'green', borderRadius: '50px' }} onClick={handleFeaturesClick}>Features</button>
                   </div>
                 </div>
               </div>
@@ -75,7 +80,7 @@ const Intro = () => {
                       src={`https://image.tmdb.org/t/p/w500/${moviePosters[currentPosterIndex]}`} // Use the poster path
                       className="img-fluid rounded-start"
                       alt={`Movie Poster ${currentPosterIndex + 1}`}
-                      style={{ height: '400px', width: '100%', borderRadius: '10px', clipPath: 'polygon(0 0, 100% 0%, 100% 100%, 0% 100%)', transition: 'clip-path 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)' }} // Set the transition animation with a cubic-bezier timing function
+                      style={{ height: '450px', width: '100%', borderRadius: '20px', clipPath: 'polygon(0 0, 100% 0%, 100% 100%, 0% 100%)', transition: 'clip-path 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)' }} // Set the transition animation with a cubic-bezier timing function
                     />
                   </div>
                 </div>
@@ -84,9 +89,10 @@ const Intro = () => {
           </div>
         </div>
       </div>
-      <div ref={cards2Ref} id="Cards2">
+      <div ref={cards2Ref} id="Card2">
         {/* You can render additional content below the movie posters if needed */}
       </div>
+      <div ref={aboutUsRef} /> {/* Render the Aboutus component and assign the ref */}
     </div>
   );
 };
