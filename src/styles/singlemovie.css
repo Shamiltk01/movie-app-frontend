@@ -11,6 +11,8 @@
     background-position: center;
     position: relative;
     overflow: hidden;
+    
+    
 
 
 }
@@ -204,6 +206,7 @@ h1 {
 
     .hero {
         background-image: url(../images/small-background.png);
+        
     }
     
     .trailer-container {
