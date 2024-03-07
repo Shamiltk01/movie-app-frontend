@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 
 const SigninSignUp = () => {
@@ -14,15 +15,23 @@ const SigninSignUp = () => {
   }
   const signUpGet=()=>{
     axios.post("http://localhost:3001/user/signup",input).then((response)=>{
-      console.log(response.data)
-      alert(response.data.status)
+        alert(response.data.status)
+        setInput({
+          logname:"",
+          logpass:"",
+          logemail:""
+        })
     })
   }
 
   const signInGet=()=>{
     axios.post("http://localhost:3001/user/signin",input).then((response)=>{
-      console.log(response.data)
       alert(response.data.status)
+      setInput({
+        logname:"",
+        logpass:"",
+        logemail:""
+      })
     })
   }
   
@@ -34,9 +43,9 @@ const SigninSignUp = () => {
 
   return (
     <div className={`section full-height ${isSignUp ? 'signup-mode' : ''}`}>
-      <a href="#" className="logo" target="_blank">
+      <Link to="#" className="logo" target="_blank">
         <img src="https://static.vecteezy.com/system/resources/previews/011/934/381/original/gold-home-icon-free-png.png" alt="" />
-      </a>
+      </Link>
 
 
       <div className="container">
@@ -90,9 +99,9 @@ const SigninSignUp = () => {
                         </div>
                         <button className="btn mt-4" onClick={signInGet}>Submit</button>
                         <p className="mb-0 mt-4 text-center">
-                          <a href="#0" className="link">
+                          <Link href="#0" className="link">
                             Forgot your password?
-                          </a>
+                          </Link>
                         </p>
                       </div>
                     </div>
