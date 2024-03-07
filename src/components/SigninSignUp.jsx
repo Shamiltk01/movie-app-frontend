@@ -43,7 +43,7 @@ const SigninSignUp = () => {
 
   return (
     <div className={`section full-height ${isSignUp ? 'signup-mode' : ''}`}>
-      <Link to="#" className="logo" target="_blank">
+      <Link to="/" className="logo" target="_blank">
         <img src="https://static.vecteezy.com/system/resources/previews/011/934/381/original/gold-home-icon-free-png.png" alt="" />
       </Link>
 

@@ -10,13 +10,15 @@ import ViewBookings from './components/ViewBookings';
 import Intro from './components/Intro';
 import SingleMovie from './components/SingleMovie';
 import AcceptUser from "./components/AcceptUser";
+import MovieGenres from "./components/Moviegenres";
+import Aboutus from "./components/Aboutus";
 
 const App = () => {
   return (
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<><Intro/><Card2/></>}/>
+          <Route path="/" element={<><Intro/><MovieGenres/><Aboutus/><Card2/></>}/>
           <Route path="/signin" element={<SigninSignUp />} />
           <Route path="/moviebooking" element={<AdimAdd />} />
           <Route path="/deletemovie" element={<DeleteMovie />} />
