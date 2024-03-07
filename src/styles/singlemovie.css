@@ -7,11 +7,11 @@
 .hero {
     width: 100%;
     height: 100vh;
-    background-image: url(../images/background.png);
     background-size: cover;
     background-position: center;
     position: relative;
     overflow: hidden;
+
 
 }
 
@@ -205,4 +205,48 @@ h1 {
     .hero {
         background-image: url(../images/small-background.png);
     }
+    
+    .trailer-container {
+        position: relative;
+        width: 85%;
+        height: 550px;
+        margin: 0 auto;
+        top: 100%;
+        transform: translateY(-50%);
+    }
+    
+    /* Add this style to prevent the iframe from capturing pointer events */
+    .trailer-container iframe {
+        pointer-events: none; /* Prevent pointer events on the iframe */
+        color: transparent; /* Make the text inside the iframe transparent */
+    }
+}
+.hero.trailer-playing .content {
+    color: transparent;
+}
+.movie-poster {
+    width: 300px; /* Adjust the width of the poster */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 20px; /* Add margin to separate poster from movie details */
+}
+
+/* Adjust the movie details layout */
+.movie-details {
+    display: flex;
+    align-items: center; /* Align items vertically */
+}
+
+.movie-info {
+    color: #fff;
+    text-align: left;
+    margin-left: px; /* Add margin to separate movie poster from movie details */
+}
+
+.movie-info h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.movie-info button {
+    margin-top: 180px; /* Add margin to separate buttons from movie details */
 }
