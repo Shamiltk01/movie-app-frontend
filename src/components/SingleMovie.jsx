@@ -22,7 +22,10 @@ const SingleMovie = () => {
       );
       const data = await response.json();
       setMovieDetails(data);
-      document.querySelector(".hero").style.backgroundImage = `url(https://image.tmdb.org/t/p/original${data.backdrop_path})`;
+      document.querySelector(".hero").style.cssText = `
+  background-image: url(https://image.tmdb.org/t/p/original${data.backdrop_path});
+  background-color: rgba(0, 0, 0, 0.2); /* Adjust the alpha value (last parameter) to change transparency */
+`;
     } catch (error) {
       console.error("Error fetching movie details:", error);
     }
@@ -90,7 +93,7 @@ const SingleMovie = () => {
   };
 
   return (
-    <div className={`hero ${isTrailerPlaying ? "trailer-playing" : ""}`}>
+    <div className={`hero ${isTrailerPlaying ? "trailer-playing" : ""}`} >
       <div className="navbar">
         <img src={logo} alt="" className="logo" />
         <button type="button" to="">
