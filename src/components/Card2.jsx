@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom/dist/umd/react-router-dom.development";
 
 const Card2 = () => {
   const [moviesData, setMoviesData] = useState([]);
@@ -8,7 +9,7 @@ const Card2 = () => {
     const fetchMovieData = async () => {
       try {
 
-        const movieNames = ['Anweshippin Kandethum', 'Premalu', 'Manjummel Boys']; // Names of the movies you want to fetch
+        const movieNames = ['Anweshippin Kandethum', 'Manjummel Boys', 'Manjummel Boys']; // Names of the movies you want to fetch
 
         const movies = [];
 
@@ -36,27 +37,10 @@ const Card2 = () => {
 
     fetchMovieData();
   }, []);
-
-  const fetchTrailer = async (movieId) => {
-    try {
-      const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/${movieId}/videos`,
-        {
-          params: {
-            api_key: "775ffc67f20ef642f55ceb576824b014",
-            language: "en-US",
-          },
-        }
-      );
-      if (response.data.results.length > 0) {
-        const trailerKey = response.data.results[0].key;
-        window.open(`https://www.youtube.com/watch?v=${trailerKey}`, "_blank");
-      } else {
-        console.log("No trailers found for this movie.");
-      }
-    } catch (error) {
-      console.error("Error fetching trailer:", error);
-    }
+const navigate=useNavigate()
+  const handleBookNow = (movieId) => {
+    sessionStorage.setItem("selectedMovieId", movieId); // Store movie ID in sessionStorage
+    navigate("/smovie"); // Navigate to the SingleMovie page
   };
 
   return (
@@ -181,8 +165,9 @@ const Card2 = () => {
               <h5 className="card1-title">Movie:{movie.title}</h5>
               {/* <p className="card1-text">Release Date: {movie.release_date}</p>
               <p className="card1-text">Vote Average: {movie.vote_average}</p> */}
-              {index === 1 && <button className="btn-book-now">Book Now</button>}
-
+             {index === 1 && (
+                <button className="btn-book-now" onClick={() => handleBookNow(movie.id)}>Book Now</button>
+             )}
              
        
 
