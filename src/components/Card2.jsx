@@ -9,7 +9,7 @@ const Card2 = () => {
     const fetchMovieData = async () => {
       try {
 
-        const movieNames = ['Anweshippin Kandethum', 'Anjaam Pathira', 'Manjummel Boys']; // Names of the movies you want to fetch
+        const movieNames = ['Anweshippin Kandethum', 'Dune 2', 'Manjummel Boys']; // Names of the movies you want to fetch
 
         const movies = [];
 
