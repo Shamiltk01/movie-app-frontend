@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom/dist/umd/react-router-dom.development";
 
 const Card2 = () => {
   const [moviesData, setMoviesData] = useState([]);
@@ -7,7 +8,9 @@ const Card2 = () => {
   useEffect(() => {
     const fetchMovieData = async () => {
       try {
-        const movieNames = ["Bramayugam", "Premalu", "Manjummel Boys"]; // Names of the movies you want to fetch
+
+        const movieNames = ['Anweshippin Kandethum', 'Manjummel Boys', 'Manjummel Boys']; // Names of the movies you want to fetch
+
         const movies = [];
 
         for (const name of movieNames) {
@@ -34,32 +37,18 @@ const Card2 = () => {
 
     fetchMovieData();
   }, []);
-  const fetchTrailer = async (movieId) => {
-    try {
-      const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/${movieId}/videos`,
-        {
-          params: {
-            api_key: "775ffc67f20ef642f55ceb576824b014",
-            language: "en-US",
-          },
-        }
-      );
-      if (response.data.results.length > 0) {
-        const trailerKey = response.data.results[0].key;
-        window.open(`https://www.youtube.com/watch?v=${trailerKey}`, "_blank");
-      } else {
-        console.log("No trailers found for this movie.");
-      }
-    } catch (error) {
-      console.error("Error fetching trailer:", error);
-    }
+const navigate=useNavigate()
+  const handleBookNow = (movieId) => {
+    sessionStorage.setItem("selectedMovieId", movieId); // Store movie ID in sessionStorage
+    navigate("/smovie"); // Navigate to the SingleMovie page
   };
+
   return (
     <div>
       <style>{`
         .card1-group {
           display: flex;
+          flex-wrap: wrap; /* Ensure cards wrap to the next line */
           gap: 20px; /* Adjust the gap size as needed */
           justify-content: center;
           position: relative; /* Position the card1 group relative to its container */
@@ -68,24 +57,19 @@ const Card2 = () => {
           background-color: black; /* Set the background color to black */
         }
 
-        .card1{
+        .card1 {
           position: relative; /* Ensure proper stacking */
           border-radius: 15px; /* Rounded corners */
           overflow: hidden; /* Ensures rounded corners apply */
           box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.5); /* Optional: Add shadow */
-          flex: 1; /* Equal width for each card1 */
-          max-width: 280px; /* Set max-width to prevent card1s from stretching too much */
+          flex-grow: 1; /* Allow cards to grow */
+          max-width: 300px; /* Set max-width to prevent card1s from stretching too much */
           transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
           background-color: black;
           display: flex; /* Use flexbox for positioning */
           flex-direction: column; /* Align children vertically */
           border: 2px solid rgba(255, 255, 255, 0.1); /* Add white border with reduced opacity */
           margin-bottom: 20px; /* Add margin to create space between card1s */
-        }
-
-        .card1:first-child,
-        .card1:nth-child(2) {
-          border-right: none; /* Remove right border for the first and second card1 */
         }
 
         .card1:hover {
@@ -108,10 +92,6 @@ const Card2 = () => {
           object-fit: cover; /* Ensure the image covers the entire space */
           border-top-left-radius: 15px; /* Match the top-left border radius */
           border-top-right-radius: 15px; /* Match the top-right border radius */
-        }
-
-        .card1-text-secondary {
-          color: #6c757d; /* Adjust text color */
         }
 
         .btn-book-now {
@@ -173,29 +153,24 @@ const Card2 = () => {
         }
       `}</style>
 
-      <div className="card1-group">
+      <div className="card1-group my-5">
         {moviesData.map((movie, index) => (
           <div className="card1" key={movie.id}>
             <div className="layer-text">
-              {index === 0
-                ? "Previous Movie"
-                : index === 1
-                ? "Now Playing"
-                : "Upcoming Movie"}
-            </div>
-            <img
-              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-              className="card1-img-top"
-              alt={movie.title}
-            />
-            <div className="card1-body">
-              <h5 className="card1-title">{movie.title}</h5>
-              <p className="card1-text">Release Date: {movie.release_date}</p>
-              <p className="card1-text">Vote Average: {movie.vote_average}</p>
 
-              {index === 1 && (
-                <button className="btn-book-now">Book Now</button>
-              )}
+              {index === 0 ? 'Previous Movie' : index === 1 ? 'Now Playing' : 'Upcoming Movie'}
+            </div>
+            <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} className="card1-img-top" alt={movie.title} />
+            <div className="card1-body">
+              <h5 className="card1-title">Movie:{movie.title}</h5>
+              {/* <p className="card1-text">Release Date: {movie.release_date}</p>
+              <p className="card1-text">Vote Average: {movie.vote_average}</p> */}
+             {index === 1 && (
+                <button className="btn-book-now" onClick={() => handleBookNow(movie.id)}>Book Now</button>
+             )}
+             
+       
+
             </div>
           </div>
         ))}
