@@ -8,12 +8,13 @@ import share from "../images/share.png";
 import info from "../images/info.png";
 import bubble from "../images/bubble.png";
 import "../styles/singlemovie.css"; // Adjust the path to your CSS file
+import { useNavigate } from "react-router-dom/dist/umd/react-router-dom.development";
 
 const SingleMovie = () => {
   const [trailerUrl, setTrailerUrl] = useState("");
   const [isTrailerPlaying, setIsTrailerPlaying] = useState(false);
   const [movieDetails, setMovieDetails] = useState(null);
-
+  
   const fetchMovieDetails = async () => {
     console.log(sessionStorage.getItem("selectedMovieId"))
     try {
@@ -96,7 +97,7 @@ const SingleMovie = () => {
     <div className={`hero ${isTrailerPlaying ? "trailer-playing" : ""}`} >
       <div className="navbar">
         <img src={logo} alt="" className="logo" />
-        <button type="button" to="">
+        <button type="button" to="/signin">
           Login / Register
         </button>
       </div>
