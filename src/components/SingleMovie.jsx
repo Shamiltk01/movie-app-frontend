@@ -105,7 +105,6 @@ const SingleMovie = () => {
       setLoggedIn(true);
     }
   }, [sessionId]);
-  console.log("session", sessionId);
   const navigate = useNavigate();
   const getTicket = () => {
     navigate("/ticketbooking");

@@ -29,7 +29,7 @@ const SigninSignUp = () => {
         sessionStorage.setItem("sessionId", response.data.userData._id);
         navigate("/smovie");
       } else if (response.data.status === "admin success") {
-        sessionStorage.setItem("sessionId", response.data.userData._id);
+        sessionStorage.setItem("sessionId", response.data.adminData._id);
         navigate("/acceptuser");
       } else {
         alert(response.data.status);
