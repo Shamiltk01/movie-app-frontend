@@ -64,11 +64,11 @@ const Intro = () => {
           <div className="card mb-3" style={{ backgroundColor: 'transparent', border: 'none', borderRadius: '15px', padding: '20px' }}>
             <div className="row g-0">
               <div className="col-md-8">
-                <div className="card-body" style={{ color: 'white', fontFamily: 'Arial, sans-serif' }}>
+                <div className="card-body" style={{ color: 'white', fontFamily: 'Arial, sans-serif' ,marginTop:'70px'}}>
                   <h1 className="card-title" style={{ fontSize: '5rem', lineHeight: '1.2', marginBottom: '20px', fontFamily: 'Arial, sans-serif' }}>Welcome to <br /> Sagarika!</h1>
-                  <p style={{ textAlign: 'center', marginTop: '20px ', fontFamily: 'Arial, sans-serif' }}>Experience the magic of cinema. Book your tickets now for an unforgettable movie night.</p>
-                  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '40px' }}>
-                    <button className="btn btn-success me-3" style={{ width: '200px' }} onClick={handleScroll}>View Movies</button>
+                  <p style={{marginTop: '20px ', fontFamily: 'Arial, sans-serif' }}>Experience the magic of cinema. Book your tickets now for an unforgettable movie night.</p>
+                  <div style={{ display: 'flex',alignItems: 'center', marginTop: '40px' }}>
+                    <button className="btn btn-success me-3" style={{ width: '200px',  borderRadius: '50px'}} onClick={handleScroll}>View Movies</button>
                     <button className="btn btn-primary" style={{ width: '200px', backgroundColor: 'transparent', borderColor: 'green', color: 'green', borderRadius: '50px' }} onClick={handleFeaturesClick}>Features</button>
                   </div>
                 </div>
