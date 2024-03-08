@@ -27,7 +27,7 @@ const Navi = () => {
               height="24"
               className="d-inline-block align-text-top"
             />
-            Movie Booking
+            Sagarika
           </Link>
           <button
             className="navbar-toggler"
@@ -63,9 +63,18 @@ const Navi = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                {loggedIn?<button className="btn btn-outline-light" onClick={()=>{
-                  logout()
-                }}>Logout</button>:""}
+                {loggedIn ? (
+                  <button
+                    className="btn btn-outline-light"
+                    onClick={() => {
+                      logout();
+                    }}
+                  >
+                    Logout
+                  </button>
+                ) : (
+                  ""
+                )}
               </li>
             </ul>
           </div>
