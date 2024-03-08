@@ -25,9 +25,16 @@ const SingleMovie = () => {
       const data = await response.json();
       setMovieDetails(data);
       document.querySelector(".hero").style.cssText = `
-  background-image: url(https://image.tmdb.org/t/p/original${data.backdrop_path});
-  background-color: rgba(0, 0, 0, 0.2); /* Adjust the alpha value (last parameter) to change transparency */
-`;
+      background:
+      /* top, transparent black, faked with gradient */ 
+      linear-gradient(
+        rgba(0, 0, 0, 0.7), 
+        rgba(0, 0, 0, 0.6)
+      ),
+      /* bottom, image */
+      url(https://image.tmdb.org/t/p/original${data.backdrop_path}) center;
+      background-size: auto;
+      `;
     } catch (error) {
       console.error("Error fetching movie details:", error);
     }

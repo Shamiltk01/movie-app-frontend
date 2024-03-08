@@ -68,8 +68,8 @@ const Intro = () => {
                   <h1 className="card-title" style={{ fontSize: '5rem', lineHeight: '1.2', marginBottom: '20px', fontFamily: 'Arial, sans-serif' }}>Welcome to <br /> Sagarika!</h1>
                   <p style={{marginTop: '50px ',marginBottom:'70px', fontFamily: 'Arial, sans-serif' }}>Experience the magic of cinema. Book your tickets now for an unforgettable movie night.</p>
                   <div style={{ display: 'flex',alignItems: 'center', marginTop: '90px',marginBottom:'40px' }}>
-                    <button className="btn btn-success me-3" style={{ width: '200px',  borderRadius: '50px'}} onClick={handleScroll}>View Movies</button>
-                    <button className="btn btn-success me-3" style={{ width: '200px',borderRadius: '50px' }} onClick={handleFeaturesClick}>Features</button>
+                    <button className="btn1  me-3" style={{ width: '200px',  borderRadius: '50px'}} onClick={handleScroll}>View Movies</button>
+                    <button className="btn1 me-3" style={{ width: '200px',borderRadius: '50px' }} onClick={handleFeaturesClick}>Features</button>
                   </div>
                 </div>
               </div>
