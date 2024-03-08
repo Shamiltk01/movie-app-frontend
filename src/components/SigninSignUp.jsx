@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import homelogo from '../images/home.png'
 
 const SigninSignUp = () => {
   const navigate = useNavigate();
@@ -52,7 +53,7 @@ const SigninSignUp = () => {
     <div className={`section full-height ${isSignUp ? "signup-mode" : ""}`}>
       <Link to="/" className="logo">
         <img
-          src="https://static.vecteezy.com/system/resources/previews/011/934/381/original/gold-home-icon-free-png.png"
+          src={homelogo}
           alt=""
         />
       </Link>
