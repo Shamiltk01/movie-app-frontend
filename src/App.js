@@ -12,23 +12,34 @@ import SingleMovie from './components/SingleMovie';
 import AcceptUser from "./components/AcceptUser";
 import MovieGenres from "./components/Moviegenres";
 import Aboutus from "./components/Aboutus";
+import TicketBooking from "./components/TicketBooking";
 
 const App = () => {
   return (
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<><Intro/><MovieGenres/><Aboutus/><Card2/></>}/>
+          <Route
+            path="/"
+            element={
+              <>
+                <Intro />
+                <MovieGenres />
+                <Aboutus />
+                <Card2 />
+              </>
+            }
+          />
           <Route path="/signin" element={<SigninSignUp />} />
           <Route path="/moviebooking" element={<AdimAdd />} />
           <Route path="/deletemovie" element={<DeleteMovie />} />
           <Route path="/viewbooking" element={<ViewBookings />} />
           <Route path="/acceptuser" element={<AcceptUser />} />
-          <Route path="/smovie" element={<SingleMovie/>}/>
+          <Route path="/smovie" element={<SingleMovie />} />
+          <Route path="/ticketbooking" element={<TicketBooking />} />
         </Routes>
       </BrowserRouter>
     </div>
-
   );
 };
 
