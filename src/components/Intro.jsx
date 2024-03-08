@@ -64,12 +64,12 @@ const Intro = () => {
           <div className="card mb-3" style={{ backgroundColor: 'transparent', border: 'none', borderRadius: '15px', padding: '20px' }}>
             <div className="row g-0">
               <div className="col-md-8">
-                <div className="card-body" style={{ color: 'white', fontFamily: 'Arial, sans-serif' ,marginTop:'70px'}}>
+                <div className="card-body" style={{color: 'white', fontFamily: 'Arial, sans-serif' ,marginTop:'70px'}}>
                   <h1 className="card-title" style={{ fontSize: '5rem', lineHeight: '1.2', marginBottom: '20px', fontFamily: 'Arial, sans-serif' }}>Welcome to <br /> Sagarika!</h1>
-                  <p style={{marginTop: '20px ', fontFamily: 'Arial, sans-serif' }}>Experience the magic of cinema. Book your tickets now for an unforgettable movie night.</p>
-                  <div style={{ display: 'flex',alignItems: 'center', marginTop: '40px' }}>
+                  <p style={{marginTop: '50px ',marginBottom:'70px', fontFamily: 'Arial, sans-serif' }}>Experience the magic of cinema. Book your tickets now for an unforgettable movie night.</p>
+                  <div style={{ display: 'flex',alignItems: 'center', marginTop: '90px',marginBottom:'40px' }}>
                     <button className="btn btn-success me-3" style={{ width: '200px',  borderRadius: '50px'}} onClick={handleScroll}>View Movies</button>
-                    <button className="btn btn-primary" style={{ width: '200px', backgroundColor: 'transparent', borderColor: 'green', color: 'green', borderRadius: '50px' }} onClick={handleFeaturesClick}>Features</button>
+                    <button className="btn btn-success me-3" style={{ width: '200px',borderRadius: '50px' }} onClick={handleFeaturesClick}>Features</button>
                   </div>
                 </div>
               </div>
@@ -80,7 +80,7 @@ const Intro = () => {
                       src={`https://image.tmdb.org/t/p/w500/${moviePosters[currentPosterIndex]}`} // Use the poster path
                       className="img-fluid rounded-start"
                       alt={`Movie Poster ${currentPosterIndex + 1}`}
-                      style={{ height: '450px', width: '100%', borderRadius: '20px', clipPath: 'polygon(0 0, 100% 0%, 100% 100%, 0% 100%)', transition: 'clip-path 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)' }} // Set the transition animation with a cubic-bezier timing function
+                      style={{ height: '490px', width: '100%', borderRadius: '8px', clipPath: 'polygon(0 0, 100% 0%, 100% 100%, 0% 100%)', transition: 'clip-path 1s cubic-bezier(0.25, 0.46, 0.45, 0.94)' }} // Set the transition animation with a cubic-bezier timing function
                     />
                   </div>
                 </div>

@@ -232,7 +232,7 @@ h6 span{
     transition: all 200ms linear;
 }
 
-.btn{  
+.btn1{  
   border-radius: 4px;
   height: 44px;
   font-size: 13px;
@@ -261,16 +261,21 @@ h6 span{
   box-shadow: 0 8px 24px 0 rgba(255,235,167,.2);
   margin-left: 40px;
 }
-.btn:active,
-.btn:focus{  
+.btn1:active,
+.btn1:focus{  
   background-color: #102770;
   color: #ffeba7;
   box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
 }
-.btn:hover{
+.btn1:hover{
   background-color: #102770;
   color: #ffeba7;
   box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
+}
+
+.badge{
+  background-color: #ffeba7;
+  color: #102770;
 }
 
 .logo {
@@ -292,6 +297,8 @@ h6 span{
   right: 90px;
   font-size: 18px
 }
+
+
 
 body {
   margin: 0;

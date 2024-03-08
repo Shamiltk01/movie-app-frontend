@@ -97,7 +97,7 @@ const SigninSignUp = () => {
                           />
                           <i className="input-icon uil uil-lock-alt"></i>
                         </div>
-                        <button className="btn mt-4" onClick={signInGet}>Submit</button>
+                        <button className="btn1 mt-4" onClick={signInGet}>Submit</button>
                         <p className="mb-0 mt-4 text-center">
                           <Link href="#0" className="link">
                             Forgot your password?
@@ -149,7 +149,7 @@ const SigninSignUp = () => {
                           />
                           <i className="input-icon uil uil-lock-alt"></i>
                         </div>
-                        <button className="btn mt-4" onClick={signUpGet}>Submit</button>
+                        <button className="btn1 mt-4" onClick={signUpGet}>Submit</button>
                       </div>
                     </div>
                   </div>
