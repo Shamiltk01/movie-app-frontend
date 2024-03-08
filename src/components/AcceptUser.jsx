@@ -56,7 +56,7 @@ const AcceptUser = () => {
                         accept
                       </button>
                       <button
-                        className="btn btn-success"
+                        className="btn btn-danger"
                         onClick={() => {
                           rejectUser(value._id);
                         }}

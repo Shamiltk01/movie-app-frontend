@@ -10,6 +10,7 @@ body{
 	background-color: #1f2029;
 	overflow-x: hidden;
 }
+
 a {
 	cursor: pointer;
   transition: all 200ms linear;
@@ -19,6 +20,7 @@ a:hover {
 }
 .link {
   color: #c4c3ca;
+  
 }
 .link:hover {
   color: #ffeba7;
@@ -231,7 +233,7 @@ h6 span{
     transition: all 200ms linear;
 }
 
-.btn{  
+.btn1{  
   border-radius: 4px;
   height: 44px;
   font-size: 13px;
@@ -258,36 +260,46 @@ h6 span{
   background-color: #ffeba7;
   color: #102770;
   box-shadow: 0 8px 24px 0 rgba(255,235,167,.2);
+  margin-left: 40px;
 }
-.btn:active,
-.btn:focus{  
+.btn1:active,
+.btn1:focus{  
   background-color: #102770;
   color: #ffeba7;
   box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
 }
-.btn:hover{  
+.btn1:hover{
   background-color: #102770;
   color: #ffeba7;
   box-shadow: 0 8px 24px 0 rgba(16,39,112,.2);
 }
 
-
-
+.badge{
+  background-color: #ffeba7;
+  color: #102770;
+}
 
 .logo {
 	position: absolute;
-	top: 30px;
+	top: 50px;
 	right: 30px;
 	display: block;
 	z-index: 100;
 	transition: all 250ms linear;
+  
 }
 
 .logo img {
 	height: 26px;
 	width: auto;
 	display: block;
+  position: absolute;
+  top: 50px;
+  right: 90px;
+  font-size: 18px
 }
+
+
 
 body {
   margin: 0;

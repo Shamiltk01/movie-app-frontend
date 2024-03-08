@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from "react";
 import logo from "../images/logo2.png";
-import menu from "../images/menu.png";
-import fb from "../images/fb.png";
-import ig from "../images/ig.png";
-import tw from "../images/tw.png";
-import share from "../images/share.png";
-import info from "../images/info.png";
-import bubble from "../images/bubble.png";
 import "../styles/singlemovie.css"; // Adjust the path to your CSS file
 import { Link } from "react-router-dom";
 
@@ -25,9 +18,16 @@ const SingleMovie = () => {
       const data = await response.json();
       setMovieDetails(data);
       document.querySelector(".hero").style.cssText = `
-  background-image: url(https://image.tmdb.org/t/p/original${data.backdrop_path});
-  background-color: rgba(0, 0, 0, 0.2); /* Adjust the alpha value (last parameter) to change transparency */
-`;
+      background:
+      /* top, transparent black, faked with gradient */ 
+      linear-gradient(
+        rgba(0, 0, 0, 0.7), 
+        rgba(0, 0, 0, 0.6)
+      ),
+      /* bottom, image */
+      url(https://image.tmdb.org/t/p/original${data.backdrop_path}) center;
+      background-size: auto;
+      `;
     } catch (error) {
       console.error("Error fetching movie details:", error);
     }
@@ -96,7 +96,7 @@ const SingleMovie = () => {
   return (
     <div className={`hero ${isTrailerPlaying ? "trailer-playing" : ""}`} >
       <div className="navbar">
-        <img src={logo} alt="" className="logo" />
+        <Link to='/'><img src={logo} alt="" className="logo"/></Link>
         <Link to='/signin'><button type="button">
           Login / Register
         </button></Link>
@@ -129,19 +129,6 @@ const SingleMovie = () => {
             </div>
           </div>
         )}
-      </div>
-      <div className="slide-bar">
-        <img src={menu} alt="" className="menu" />
-        <div className="social-links">
-          <img src={fb} alt="" />
-          <img src={ig} alt="" />
-          <img src={tw} alt="" />
-        </div>
-
-        <div className="useful-links">
-          <img src={share} alt="" />
-          <img src={info} alt="" />
-        </div>
       </div>
 
       {trailerUrl && (

@@ -9,7 +9,7 @@ const Card2 = () => {
     const fetchMovieData = async () => {
       try {
 
-        const movieNames = ['Anweshippin Kandethum', 'Dune 2', 'Manjummel Boys']; // Names of the movies you want to fetch
+        const movieNames = ['animal', 'Avatar: The Way of Water', 'Manjummel Boys']; // Names of the movies you want to fetch
 
         const movies = [];
 
@@ -98,21 +98,24 @@ const Card2 = () => {
         }
 
         .btn-view-more {
-          background-color: aquamarine;
-          color:black;
+          background-color: #ffeba7;
+          color:#102770;
+          box-shadow: 0 8px 24px 0 rgba(255,235,167,.2);
           border: 1px solid white;
           padding: 0.5rem 1rem;
-          border-radius: 5px;
+          border-radius: 25px;
           cursor: pointer;
           position: absolute;
           z-index: 999;
+          font-size: 13px;
+          font-weight: 600;
           top: 92%; /* Position it vertically in the middle */
           left: -300%; /* Position it horizontally in the middle */
           transform: translate(-50%, -50%); /* Center it both vertically and horizontally */
         }
         .btn-view-more:hover {
-          background-color: white;
-          color: black;
+          background-color: #102770;
+          color: #ffeba7;
         }
       
         /* Layer styles */

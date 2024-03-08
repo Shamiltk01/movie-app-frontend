@@ -13,7 +13,7 @@ const Aboutus = () => {
                 <p className="card-text text-white" style={{ fontSize: '18px' }}>Select seats with ease using interactive seat maps</p>
               </div>
               <div style={{ position: 'absolute', top: '50%', left: '-15px', transform: 'translate(-50%, -50%)' }}>
-                <div className="badge bg-danger" style={{ width: '30px', height: '30px', fontSize: '14px', borderRadius: '5px', position: 'relative' }}>
+                <div className="badge" style={{ width: '30px', height: '30px', fontSize: '14px', borderRadius: '5px', position: 'relative' }}>
                   1
                   <div className="line" style={{ position: 'absolute', width: '0', height: '2px', backgroundColor: 'red', top: '50%', left: '100%', animation: 'moveLine 2s infinite alternate' }}></div>
                 </div>
@@ -27,7 +27,7 @@ const Aboutus = () => {
                 <p className="card-text text-white" style={{ fontSize: '18px' }}>Enjoy a secure and swift booking process </p>
               </div>
               <div style={{ position: 'absolute', top: '50%', left: '-15px', transform: 'translate(-50%, -50%)' }}>
-                <div className="badge bg-danger" style={{ width: '30px', height: '30px', fontSize: '14px', borderRadius: '5px', position: 'relative' }}>
+                <div className="badge" style={{ width: '30px', height: '30px', fontSize: '14px', borderRadius: '5px', position: 'relative' }}>
                   2
                   <div className="line" style={{ position: 'absolute', width: '0', height: '2px', backgroundColor: 'red', top: '50%', left: '100%', animation: 'moveLine 2s infinite alternate' }}></div>
                 </div>
@@ -41,7 +41,7 @@ const Aboutus = () => {
                 <p className="card-text text-white" style={{ fontSize: '18px' }}>Receive instant confirmation and e-tickets for your selected seats.</p>
               </div>
               <div style={{ position: 'absolute', top: '50%', left: '-15px', transform: 'translate(-50%, -50%)' }}>
-                <div className="badge bg-danger" style={{ width: '30px', height: '30px', fontSize: '14px', borderRadius: '5px', position: 'relative' }}>
+                <div className="badge" style={{ width: '30px', height: '30px', fontSize: '14px', borderRadius: '5px', position: 'relative' }}>
                   3
                   <div className="line" style={{ position: 'absolute', width: '0', height: '2px', backgroundColor: 'red', top: '50%', left: '100%', animation: 'moveLine 2s infinite alternate' }}></div>
                 </div>
