@@ -12,15 +12,16 @@
     position: relative;
     overflow: hidden;
     
-    
+
+
 
 
 }
 
 .logo {
-    width: 100px;
+    width: 250px;
     cursor: pointer;
-    position:static;
+    position: static;
 }
 
 .navbar {
@@ -40,7 +41,19 @@ button {
     border-radius: 20px;
     outline: none;
     cursor: pointer;
+    margin-left: 5px;
+    margin-right: 50px;
 }
+
+button:hover {
+    background-color: #410c0c;
+    /* change to your desired color */
+    color: white;
+    /* change to your desired color */
+    ;
+}
+
+
 
 .content {
     color: #fbfcfd;
@@ -52,12 +65,45 @@ button {
 }
 
 h1 {
+    font-size: 50px;
+    margin: -50px 0 30px;
+    line-height: 60px;
+    font-family: "sans-serif";
+    font-weight: bold;
+    text-shadow: 2px 2px #000000;
+
+}
+
+h5 {
+    font-size: 20px;
+    margin: -50px 0 px;
+    line-height: 60px;
+    font-family: "sans-serif";
+    font-weight: bold;
+    text-shadow: 2px 2px #000000;
+
+}
+
+p {
+    font-size: 17px;
+    font-family: sans-serif;
+    text-shadow: 0.5px 0.5px antiquewhite;
+}
+
+.video-player {
+    margin-top: 50px;
+    position: absolute;
+    top: 70%;
+    left: 30%;
+
+}
+
+.movie-info {
     font-size: 80px;
     margin: 10px 0 30px;
     line-height: 80px;
-    font-family:  "sans-serif";
+    font-family: "sans-serif";
     font-weight: bold;
-
 }
 
 .slide-bar {
@@ -206,9 +252,9 @@ h1 {
 
     .hero {
         background-image: url(../images/small-background.png);
-        
+
     }
-    
+
     .trailer-container {
         position: relative;
         width: 85%;
@@ -217,32 +263,41 @@ h1 {
         top: 100%;
         transform: translateY(-50%);
     }
-    
+
     /* Add this style to prevent the iframe from capturing pointer events */
     .trailer-container iframe {
-        pointer-events: none; /* Prevent pointer events on the iframe */
-        color: transparent; /* Make the text inside the iframe transparent */
+        pointer-events: none;
+        /* Prevent pointer events on the iframe */
+        color: transparent;
+        /* Make the text inside the iframe transparent */
     }
 }
+
 .hero.trailer-playing .content {
     color: transparent;
 }
+
 .movie-poster {
-    width: 300px; /* Adjust the width of the poster */
-    height: auto; /* Maintain aspect ratio */
-    margin-right: 20px; /* Add margin to separate poster from movie details */
+    width: 300px;
+    /* Adjust the width of the poster */
+    height: auto;
+    /* Maintain aspect ratio */
+    margin-right: 20px;
+    /* Add margin to separate poster from movie details */
 }
 
 /* Adjust the movie details layout */
 .movie-details {
     display: flex;
-    align-items: center; /* Align items vertically */
+    align-items: center;
+    /* Align items vertically */
 }
 
 .movie-info {
     color: #fff;
     text-align: left;
-    margin-left: px; /* Add margin to separate movie poster from movie details */
+    margin-left: px;
+    /* Add margin to separate movie poster from movie details */
 }
 
 .movie-info h2 {
@@ -251,5 +306,6 @@ h1 {
 }
 
 .movie-info button {
-    margin-top: 180px; /* Add margin to separate buttons from movie details */
+    margin-top: 180px;
+    /* Add margin to separate buttons from movie details */
 }

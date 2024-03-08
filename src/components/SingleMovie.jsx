@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import logo from "../images/logo.png";
+import logo from "../images/logo2.png";
 import menu from "../images/menu.png";
 import fb from "../images/fb.png";
 import ig from "../images/ig.png";
@@ -14,9 +14,9 @@ const SingleMovie = () => {
   const [trailerUrl, setTrailerUrl] = useState("");
   const [isTrailerPlaying, setIsTrailerPlaying] = useState(false);
   const [movieDetails, setMovieDetails] = useState(null);
-  
+
   const fetchMovieDetails = async () => {
-   
+
     console.log(sessionStorage.getItem("selectedMovieId"))
     try {
       const response = await fetch(
@@ -106,17 +106,19 @@ const SingleMovie = () => {
           <div className="movie-details">
             <img src={`https://image.tmdb.org/t/p/original${movieDetails.poster_path}`} alt={movieDetails.title} className="movie-poster" />
             <div className="movie-info">
-              <h2>
+              <h1>
                 {movieDetails.title} ({movieDetails.release_date.split("-")[0]})
-              </h2>
+              </h1>
               <p>
                 <b>Genres</b>: {movieDetails.genres.map((genre) => genre.name).join(", ")} &nbsp;&nbsp;&nbsp;&nbsp;
                 <b>Total Time</b>: {movieDetails.runtime} minutes
               </p>
-              <h5>Overview</h5>
+              <h5>Overview : </h5>
               <p>{renderOverview(movieDetails.overview)}</p>
+            </div>
+            <div  className="video-player">
               <button type="button">Get Tickets Now!</button>
-              &nbsp;&nbsp;&nbsp;&nbsp;
+              
               <button type="button" onClick={fetchTrailer}>
                 Watch Trailer &nbsp;
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" className="bi bi-play-circle" viewBox="0 0 16 16">
