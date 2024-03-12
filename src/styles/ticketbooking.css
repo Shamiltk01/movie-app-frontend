@@ -1,13 +1,15 @@
 /* Css for seat booking */
 
 .bodybooking {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 50px; 
+}
+
+
   
   .h3booking {
     text-align: center;
@@ -21,7 +23,7 @@
   }
   
   .containerbooking {
-    max-height: 400px;
+    max-height: 220px;
     overflow-y: auto;
     overflow-x: auto;
   }
