@@ -34,19 +34,15 @@ const TicketBooking = () => {
   const handleSeatClick = (row, seatNum, location) => {
     const seatLabel = `${String.fromCharCode(65 + row - 1)}${seatNum}`;
     const seatId = `${location} - ${seatLabel}`;
-  
-    if (seatLabel.trim() !== "") {
-      setSelectedSeats((prevSelectedSeats) => {
-        if (prevSelectedSeats.includes(seatId)) {
-          return prevSelectedSeats.filter((seat) => seat !== seatId);
-        } else {
-          return [...prevSelectedSeats, seatId];
-        }
-      });
-    }
+
+    setSelectedSeats((prevSelectedSeats) => {
+      if (prevSelectedSeats.includes(seatId)) {
+        return prevSelectedSeats.filter((seat) => seat !== seatId);
+      } else {
+        return [...prevSelectedSeats, seatId];
+      }
+    });
   };
-  
-  
 
   const bookSeats = () => {
     if (selectedSeats.length === 0) {
@@ -81,9 +77,9 @@ const TicketBooking = () => {
           <React.Fragment key={seatIndex}>
             {seat !== "" ? (
               <div
-              className={`seat ${selectedSeats.includes(`${location} - ${String.fromCharCode(65 + rowIndex)}${seatIndex + 1}`) ? 'selected' : ''}`}
-              onClick={() => handleSeatClick(rowIndex + 1, seatIndex + 1, location)}
-            >
+                className={`seat ${selectedSeats.includes(`${location} - ${String.fromCharCode(65 + rowIndex)}${seatIndex + 1}`) ? 'selected' : ''}`}
+                onClick={() => handleSeatClick(rowIndex + 1, seatIndex + 1, location)}
+              >
                 {seat}
               </div>
             ) : (

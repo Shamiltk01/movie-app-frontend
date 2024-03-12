@@ -27,6 +27,7 @@
     max-height: 220px;
     overflow-y: auto;
     overflow-x: auto;
+    max-width:100%;
   }
   
   .sectionbooking {
