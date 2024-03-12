@@ -32,6 +32,7 @@
   
   .sectionbooking {
     display: flex;
+    
   }
   
   .pathway {
@@ -55,6 +56,7 @@
     color: var(--text-primary-strong);
     cursor: pointer;
     box-sizing: border-box;
+    margin-bottom: 10px;
   }
   
   .seat.selected {
