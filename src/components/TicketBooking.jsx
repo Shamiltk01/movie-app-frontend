@@ -31,18 +31,30 @@ const TicketBooking = () => {
 
   const [selectedSeats, setSelectedSeats] = useState([]);
 
-  const handleSeatClick = (row, seatNum, location) => {
-    const seatLabel = `${String.fromCharCode(65 + row - 1)}${seatNum}`;
-    const seatId = `${location} - ${seatLabel}`;
-
-    setSelectedSeats((prevSelectedSeats) => {
-      if (prevSelectedSeats.includes(seatId)) {
-        return prevSelectedSeats.filter((seat) => seat !== seatId);
-      } else {
-        return [...prevSelectedSeats, seatId];
-      }
-    });
+  const handleSeatClick = (rowIndex, seatIndex, location) => {
+    let seatName;
+    if (location === 'Balcony') {
+      seatName = balconyRows[rowIndex][seatIndex];
+    } else if (location === 'Ground Floor') {
+      seatName = groundFloorRows[rowIndex][seatIndex];
+    }
+  
+    // Only proceed if the clicked seat is not empty
+    if (seatName !== "") {
+      const seatId = `${location} - ${seatName}`;
+  
+      setSelectedSeats((prevSelectedSeats) => {
+        if (prevSelectedSeats.includes(seatId)) {
+          return prevSelectedSeats.filter((seat) => seat !== seatId);
+        } else {
+          return [...prevSelectedSeats, seatId];
+        }
+      });
+  
+      
+    }
   };
+  
 
   const bookSeats = () => {
     if (selectedSeats.length === 0) {
@@ -58,7 +70,7 @@ const TicketBooking = () => {
       }, {});
 
       const bookedSeatsText = Object.entries(bookedSeats)
-        .map(([location, seats]) => `${location} - ${seats.join(', ')}`)
+        .map(([location, seats]) => `${location} - ${seats.join(',')}`)
         .join(' & ');
 
       alert(`Booked Seats: ${bookedSeatsText}`);
@@ -77,11 +89,11 @@ const TicketBooking = () => {
           <React.Fragment key={seatIndex}>
             {seat !== "" ? (
               <div
-                className={`seat ${selectedSeats.includes(`${location} - ${String.fromCharCode(65 + rowIndex)}${seatIndex + 1}`) ? 'selected' : ''}`}
-                onClick={() => handleSeatClick(rowIndex + 1, seatIndex + 1, location)}
-              >
-                {seat}
-              </div>
+              className={`seat ${selectedSeats.includes(`${location} - ${seat}`) ? 'selected' : ''}`}
+              onClick={() => handleSeatClick(rowIndex, seatIndex, location)}
+            >
+              {seat}
+            </div>
             ) : (
               <span className="blank" key={seatIndex}></span>
             )}
