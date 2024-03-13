@@ -28,6 +28,16 @@ const TicketBooking = () => {
     ["", "M1", "M2", "M3", "M4", "M5", "M6", "M7", "M8", "M9", "M10", "M11", "", "M12", "M13", "M14", "M15", "M16", "M17", "M18", "M19", "M20", "M21", "M22", "M23", ""],
     ["", "", "N1", "N2", "N3", "N4", "N5", "N6", "N7", "N8", "N9", "N10", "", "N11", "N12", "N13", "N14", "N15", "N16", "N17", "N18", "N19", "N20", "N21", "", ""]
   ];
+  const [showTime, setShowTime] = useState('');
+  const [showDate, setShowDate] = useState('');
+
+  const handleTimeChange = (event) => {
+    setShowTime(event.target.value);
+  };
+
+  const handleDateChange = (event) => {
+    setShowDate(event.target.value);
+  };
 
   const [selectedSeats, setSelectedSeats] = useState([]);
 
@@ -68,12 +78,15 @@ const TicketBooking = () => {
         result[location].push(seatInfo);
         return result;
       }, {});
+      
 
       const bookedSeatsText = Object.entries(bookedSeats)
         .map(([location, seats]) => `${location} - ${seats.join(',')}`)
         .join(' & ');
-
-      alert(`Booked Seats: ${bookedSeatsText}`);
+        sessionStorage.setItem('bookedSeats',bookedSeatsText );
+    sessionStorage.setItem('showDate', showDate);
+    sessionStorage.setItem('showTime', showTime);
+      alert(`Booked Seats: ${bookedSeatsText} on ${showDate} - ${showTime}` );
       setSelectedSeats([]); // Clear selected seats after booking
     }
   };
@@ -106,6 +119,21 @@ const TicketBooking = () => {
   return (
     <div className='bodybooking'>
       <h1 className='h1booking'>Please Select Your Seat</h1>
+      <div className='dateandtime my-1'>
+        <label htmlFor="show-date">Date:&nbsp;</label>
+        <input type="date" id='show-date' className="form-control" onChange={handleDateChange}/>  
+      </div>
+      <div>
+        <label htmlFor="show-time">Select Show Time: &nbsp;</label>
+        <select id="show-time" value={showTime} onChange={handleTimeChange}>
+          <option value="">Select Time</option>
+          <option value="10:00 AM">10:00 AM</option>
+          <option value="1:00 PM">1:00 PM</option>
+          <option value="4:00 PM">4:00 PM</option>
+          <option value="7:00 PM">7:00 PM</option>
+        </select>
+      </div>
+      
       <h3 className='h3booking'>Balcony</h3>
       <div className="containerbooking" id="balcony-container">
         {generateSeatRows(balconyRows, 'Balcony')}
