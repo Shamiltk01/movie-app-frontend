@@ -4,40 +4,56 @@ import { useNavigate } from "react-router-dom/dist/umd/react-router-dom.developm
 
 const Card2 = () => {
   const [moviesData, setMoviesData] = useState([]);
-
+  const [movie, setMovie] = useState();
+  const [give, setGive] = useState([]);
+  const fetchMovie = () => {
+    axios
+      .get("http://localhost:3001/movie/viewall")
+      .then((response) => {
+        const movies = response.data.movies;
+        const lastMovie = movies[movies.length - 1];
+        sessionStorage.setItem("movieId", lastMovie._id);
+        const { previousMovie, presentMovie, upcomingMovie } = lastMovie;
+        setGive((prevMovies) => [...prevMovies, previousMovie]);
+        setGive((prevMovies) => [...prevMovies, presentMovie]);
+        setGive((prevMovies) => [...prevMovies, upcomingMovie]);
+      })
+      .catch((error) => {
+        console.error("Error fetching movies:", error);
+      });
+  };
+  useEffect(() => {
+    fetchMovie();
+  }, []);
   useEffect(() => {
     const fetchMovieData = async () => {
       try {
-
-        const movieNames = ['animal', 'Avatar: The Way of Water', 'Manjummel Boys']; // Names of the movies you want to fetch
-
-        const movies = [];
-
-        for (const name of movieNames) {
-          const response = await axios.get(
-            "https://api.themoviedb.org/3/search/movie",
-            {
-              params: {
-                api_key: "775ffc67f20ef642f55ceb576824b014",
-                language: "en-US",
-                query: name,
-              },
-            }
-          );
-          if (response.data.results.length > 0) {
-            movies.push(response.data.results[0]); // Add movie data to the array if found
-          }
-        }
-
-        setMoviesData(movies); // Set the movie data array
+        const movies = await Promise.all(
+          give.map(async (name) => {
+            const response = await axios.get(
+              "https://api.themoviedb.org/3/search/movie",
+              {
+                params: {
+                  api_key: "775ffc67f20ef642f55ceb576824b014",
+                  language: "en-US",
+                  query: name,
+                },
+              }
+            );
+            return response.data.results.length > 0
+              ? response.data.results[0]
+              : null;
+          })
+        );
+        setMoviesData(movies.filter((movie) => movie !== null));
       } catch (error) {
         console.error("Error fetching movie data:", error);
       }
     };
 
     fetchMovieData();
-  }, []);
-  const navigate=useNavigate()
+  }, [give]);
+  const navigate = useNavigate();
   const handleViewMore = (movieId) => {
     sessionStorage.setItem("selectedMovieId", movieId); // Store movie ID in sessionStorage
     navigate("/smovie"); // Navigate to the SingleMovie page
@@ -165,15 +181,27 @@ const Card2 = () => {
         {moviesData.map((movie, index) => (
           <div className="card1" key={movie.id}>
             <div className="layer-text">
-              {index === 0 ? 'Previous Movie' : index === 1 ? 'Now Playing' : 'Upcoming Movie'}
+              {index === 0
+                ? "Previous Movie"
+                : index === 1
+                ? "Now Playing"
+                : "Upcoming Movie"}
             </div>
-            <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} />
+            <img
+              src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+              alt={movie.title}
+            />
             <div className="card1-body">
               {/* <p className="card1-text">Release Date: {movie.release_date}</p>
               <p className="card1-text">Vote Average: {movie.vote_average}</p> */}
               {index === 1 && (
                 <>
-                  <button className="btn-view-more" onClick={() => handleViewMore(movie.id)}>View More</button>
+                  <button
+                    className="btn-view-more"
+                    onClick={() => handleViewMore(movie.id)}
+                  >
+                    View More
+                  </button>
                 </>
               )}
             </div>
