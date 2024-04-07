@@ -573,6 +573,7 @@ const TicketBooking = () => {
   const [showDate, setShowDate] = useState("");
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [seats, setSeats] = useState([]);
+  const [userId,setUserId]=useState("")
 
   const handleSeatClick = (rowIndex, seatIndex, location) => {
     let seatName;
@@ -636,9 +637,10 @@ const TicketBooking = () => {
           balcony: balcony.join(","),
         })
         .then((response) => {
-
           alert(
-            `Booked Seats: ${bookedSeatsText} on ${showDate} - ${showTime}`
+            `${bookedSeatsText} on ${sessionStorage.getItem(
+              "movieDate"
+            )} - ${sessionStorage.getItem("movieTime")}`
           );
           setSelectedSeats([]); // Clear selected seats after booking
           fetchSeats();
@@ -649,74 +651,75 @@ const TicketBooking = () => {
     }
   };
 
+
   const clearSelection = () => {
     setSelectedSeats([]);
   };
 
- const generateSeatRows = (rows, location) => {
-   return rows.map((row, rowIndex) => (
-     <div className="sectionbooking" key={rowIndex}>
-       {row.map((seat, seatIndex) => (
-         <React.Fragment key={seatIndex}>
-           {seat !== "" ? (
-             <div
-               className={`seat ${
-                 selectedSeats.includes(`${location} - ${seat}`)
-                   ? "selected"
-                   : seats.some((bookedSeat) => {
-                       const [bookedLocation, bookedSeats] =
-                         bookedSeat.split(" - ");
-                       if (bookedLocation !== location) return false;
-                       const bookedSeatNames = bookedSeats.split(",");
-                       return bookedSeatNames.includes(seat);
-                     })
-                   ? "booked"
-                   : ""
-               }`}
-               onClick={() =>
-                 !seats.some((bookedSeat) =>
-                   bookedSeat.startsWith(`${location} - ${seat}`)
-                 ) && handleSeatClick(rowIndex, seatIndex, location)
-               }
-             >
-               {seat}
-             </div>
-           ) : (
-             <span className="blank" key={seatIndex}></span>
-           )}
-         </React.Fragment>
-       ))}
-     </div>
-   ));
- };
+  const generateSeatRows = (rows, location) => {
+    return rows.map((row, rowIndex) => (
+      <div className="sectionbooking" key={rowIndex}>
+        {row.map((seat, seatIndex) => (
+          <React.Fragment key={seatIndex}>
+            {seat !== "" ? (
+              <div
+                className={`seat ${
+                  selectedSeats.includes(`${location} - ${seat}`)
+                    ? "selected"
+                    : seats.some((bookedSeat) => {
+                        const [bookedLocation, bookedSeats] =
+                          bookedSeat.split(" - ");
+                        if (bookedLocation !== location) return false;
+                        const bookedSeatNames = bookedSeats.split(",");
+                        return bookedSeatNames.includes(seat);
+                      })
+                    ? "booked"
+                    : ""
+                }`}
+                onClick={() =>
+                  !seats.some((bookedSeat) =>
+                    bookedSeat.startsWith(`${location} - ${seat}`)
+                  ) && handleSeatClick(rowIndex, seatIndex, location)
+                }
+              >
+                {seat}
+              </div>
+            ) : (
+              <span className="blank" key={seatIndex}></span>
+            )}
+          </React.Fragment>
+        ))}
+      </div>
+    ));
+  };
 
- const fetchSeats = () => {
-   axios
-     .post("http://localhost:3001/booking/viewSeats", {
-       date: sessionStorage.getItem("movieDate"),
-       time: sessionStorage.getItem("movieTime"),
-     })
-     .then((response) => {
-       const balconySeats = response.data.data.map(
-         (seat) => `Balcony - ${seat.balcony}`
-       );
-       const groundFloorSeats = response.data.data.map(
-         (seat) => `Ground Floor - ${seat.groundFloor}`
-       );
-       const allSeats = [...balconySeats, ...groundFloorSeats]; // Concatenate both arrays
+  const fetchSeats = () => {
+    axios
+      .post("http://localhost:3001/booking/viewSeats", {
+        date: sessionStorage.getItem("movieDate"),
+        time: sessionStorage.getItem("movieTime"),
+      })
+      .then((response) => {
+        
+        const balconySeats = response.data.data.map(
+          (seat) => `Balcony - ${seat.balcony}`
+        );
+        const groundFloorSeats = response.data.data.map(
+          (seat) => `Ground Floor - ${seat.groundFloor}`
+        );
+        const allSeats = [...balconySeats, ...groundFloorSeats]; // Concatenate both arrays
 
-       setSeats(allSeats);
-     })
-     .catch((error) => {
-       console.error("Error fetching seats:", error);
-     });
- };
+        setSeats(allSeats);
+      })
+      .catch((error) => {
+        console.error("Error fetching seats:", error);
+      });
+  };
 
- useEffect(() => {
-   fetchSeats();
- }, []);
+  useEffect(() => {
+    fetchSeats();
+  }, []);
 
-  console.log(seats)
 
   return (
     <div className="bodybooking">
@@ -729,19 +732,36 @@ const TicketBooking = () => {
           .selected {
             background-color: #ffff00; 
           }
+          
+          .screen-line {
+            width: 80%; /* Adjust width as needed */
+            height: 4px; /* Adjust height as needed */
+            background-color: #FFFFFF; /* Set the color of the line */
+            border-radius: 50px 50px 0 0; /* Adjust the border-radius values to control the curve */
+          }
+        
         `}
       </style>
-
       <h1 className="h1booking">Please Select Your Seat</h1>
-
-      <h3 className="h3booking">Balcony</h3>
+      <h3 className="h3booking" style={{ marginTop: "10px" }}>
+        Balcony
+      </h3>
       <div className="containerbooking" id="balcony-container">
         {generateSeatRows(balconyRows, "Balcony")}
       </div>
-      <h3 className="h3booking">Ground Floor</h3>
+      <h3 className="h3booking" style={{ marginTop: "10px" }}>
+        Ground Floor
+      </h3>
       <div className="containerbooking" id="ground-floor-container">
         {generateSeatRows(groundFloorRows, "Ground Floor")}
       </div>
+      <div
+        className="screen-line"
+        style={{ textAlign: "center", paddingTop: "10px" ,marginTop:"30px"}}
+      >
+        <h6>Screen</h6>
+      </div>{" "}
+      {/* Add this line */}
       <br />
       <button className="button-33" onClick={bookSeats}>
         <span className="text">Book Selected Seats</span>

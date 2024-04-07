@@ -121,9 +121,20 @@ const SingleMovie = () => {
     time:"",
   })
 
-  const handleChange=(e)=>{
-    setInput({...input,[e.target.name]:e.target.value})
-  }
+   const handleChange = (e) => {
+     const { name, value } = e.target;
+     setInput((prevInput) => ({
+       ...prevInput,
+       [name]: value,
+     }));
+   };
+
+   // Calculate the current date
+   const currentDate = new Date();
+
+   // Calculate the date 7 days from now
+   const nextWeekDate = new Date();
+   nextWeekDate.setDate(currentDate.getDate() + 7);
 
   const handleSubmit=()=>{
     axios
@@ -138,6 +149,7 @@ const SingleMovie = () => {
         }
       });
   }
+  console.log(input)
   return (
     <div className={`hero ${isTrailerPlaying ? "trailer-playing" : ""}`}>
       <div className="navbar">
@@ -176,17 +188,18 @@ const SingleMovie = () => {
                 <input
                   type="date"
                   name="date"
-                  value={input.value}
-                  id=""
+                  value={input.date}
                   onChange={handleChange}
+                  min={currentDate.toISOString().split("T")[0]} // Set min date to current date
+                  max={nextWeekDate.toISOString().split("T")[0]} // Set max date to 7 days from now
                   className="form-control"
                   style={{
                     width: "140px",
                     height: "60px",
-                    backgroundColor: "#f0f0f0" /* light gray */,
-                    border: " 1px solid #ccc" /* gray border */,
-                    borderRadius: "5px" /* rounded corners */,
-                    padding: " 5px 10px" /* adjust padding as needed */,
+                    backgroundColor: "#f0f0f0",
+                    border: "1px solid #ccc",
+                    borderRadius: "5px",
+                    padding: "5px 10px",
                     marginBottom: "20px",
                   }}
                 />
@@ -229,7 +242,11 @@ const SingleMovie = () => {
               <button
                 type="button"
                 onClick={() => {
-                  loggedIn ? handleSubmit() : navigate("/signin");
+                  loggedIn
+                    ? input.date && input.time
+                      ? handleSubmit()
+                      : alert("Please select date and time")
+                    : navigate("/signin");
                 }}
               >
                 Get Tickets Now!
