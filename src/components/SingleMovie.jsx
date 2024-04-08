@@ -3,6 +3,7 @@ import logo from "../images/logo2.png";
 import "../styles/singlemovie.css"; // Adjust the path to your CSS file
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom/dist/umd/react-router-dom.development";
+import axios from "axios";
 
 const SingleMovie = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -105,14 +106,50 @@ const SingleMovie = () => {
       setLoggedIn(true);
     }
   }, [sessionId]);
+
+
   const navigate = useNavigate();
   const getTicket = () => {
     navigate("/ticketbooking");
   };
-  const logout=()=>{
-    sessionStorage.clear()
-    navigate("/")
+  const logout = () => {
+    sessionStorage.clear();
+    navigate("/");
+  };
+  const [input,setInput]=useState({
+    date:"",
+    time:"",
+  })
+
+   const handleChange = (e) => {
+     const { name, value } = e.target;
+     setInput((prevInput) => ({
+       ...prevInput,
+       [name]: value,
+     }));
+   };
+
+   // Calculate the current date
+   const currentDate = new Date();
+
+   // Calculate the date 7 days from now
+   const nextWeekDate = new Date();
+   nextWeekDate.setDate(currentDate.getDate() + 7);
+
+  const handleSubmit=()=>{
+    axios
+      .post("http://localhost:3001/booking/viewSeats", input)
+      .then((response) => {
+        if (response.data.status === "success") {
+          sessionStorage.setItem("movieDate",input.date)
+          sessionStorage.setItem("movieTime",input.time)
+          getTicket();
+        } else {
+          alert(response.data.status);
+        }
+      });
   }
+  console.log(input)
   return (
     <div className={`hero ${isTrailerPlaying ? "trailer-playing" : ""}`}>
       <div className="navbar">
@@ -120,7 +157,14 @@ const SingleMovie = () => {
           <img src={logo} alt="" className="logo" />
         </Link>
         {loggedIn && sessionId ? (
-          <button type="button" onClick={()=>{logout()}}>LogOut</button>
+          <button
+            type="button"
+            onClick={() => {
+              logout();
+            }}
+          >
+            LogOut
+          </button>
         ) : (
           <Link to="/signin">
             <button type="button">Login / Register</button>
@@ -135,7 +179,51 @@ const SingleMovie = () => {
               alt={movieDetails.title}
               className="movie-poster"
             />
+
             <div className="movie-info">
+              <div
+                className="dateandtime"
+                style={{ paddingBottom: "40px", display: "flex" }}
+              >
+                <input
+                  type="date"
+                  name="date"
+                  value={input.date}
+                  onChange={handleChange}
+                  min={currentDate.toISOString().split("T")[0]} // Set min date to current date
+                  max={nextWeekDate.toISOString().split("T")[0]} // Set max date to 7 days from now
+                  className="form-control"
+                  style={{
+                    width: "140px",
+                    height: "60px",
+                    backgroundColor: "#f0f0f0",
+                    border: "1px solid #ccc",
+                    borderRadius: "5px",
+                    padding: "5px 10px",
+                    marginBottom: "20px",
+                  }}
+                />
+                <select
+                  name="time"
+                  value={input.time}
+                  onChange={handleChange}
+                  id=""
+                  className="form-control"
+                  style={{
+                    width: "140px",
+                    height: "60px",
+                    marginLeft: "40px",
+                    marginBottom: "20px",
+                  }}
+                >
+                  <option value="">Select Time</option>
+                  <option value="10 AM">10 AM</option>
+                  <option value="1 PM">1 PM</option>
+                  <option value="4 PM">4 PM</option>
+                  <option value="7 PM">7 PM</option>
+                </select>
+              </div>
+
               <h1>
                 {movieDetails.title} ({movieDetails.release_date.split("-")[0]})
               </h1>
@@ -148,11 +236,17 @@ const SingleMovie = () => {
               <h5>Overview : </h5>
               <p>{renderOverview(movieDetails.overview)}</p>
             </div>
-            <div className="video-player">
+            {/* date and time selector */}
+
+            <div className="video-player" style={{ paddingTop: "40px" }}>
               <button
                 type="button"
                 onClick={() => {
-                  loggedIn ? getTicket() : navigate("/signin");
+                  loggedIn
+                    ? input.date && input.time
+                      ? handleSubmit()
+                      : alert("Please select date and time")
+                    : navigate("/signin");
                 }}
               >
                 Get Tickets Now!
