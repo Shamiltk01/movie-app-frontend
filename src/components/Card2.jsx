@@ -23,6 +23,7 @@ const Card2 = () => {
         console.error("Error fetching movies:", error);
       });
   };
+  console.log(sessionStorage.getItem("movieId"))
   useEffect(() => {
     fetchMovie();
   }, []);

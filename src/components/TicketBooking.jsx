@@ -631,6 +631,7 @@ const TicketBooking = () => {
       axios
         .post("http://localhost:3001/booking/book", {
           userId: sessionStorage.getItem("sessionId"),
+          movieId:sessionStorage.getItem("movieId"),
           date: sessionStorage.getItem("movieDate"),
           time: sessionStorage.getItem("movieTime"),
           groundFloor: groundFloor.join(","),

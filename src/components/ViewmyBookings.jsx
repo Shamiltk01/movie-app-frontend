@@ -22,13 +22,13 @@ const ViewmyBookings = () => {
       .then((response) => {
         const responseData = response.data.data;
         const filteredData = responseData.map((booking) => ({
-          movie: sessionStorage.getItem("movieName"),
+          movie: booking.movieId.movieName,
           logname: booking.userId.logname,
           logemail: booking.userId.logemail,
           date: new Date(booking.date), // Parse date string to Date object
           time: booking.time,
           groundFloor: booking.groundFloor || "No ground seats booked",
-          balcony: booking.balcony || "No balcony seats booked"
+          balcony: booking.balcony || "No balcony seats booked",
         }));
         setBookingData(filteredData);
       })
