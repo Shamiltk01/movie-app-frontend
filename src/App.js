@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import Card2 from './components/Card2';
 import { BrowserRouter } from 'react-router-dom';
-import { Route, Routes } from 'react-router-dom/dist/umd/react-router-dom.development';
+import { Route, Routes, Switch  } from 'react-router-dom/dist/umd/react-router-dom.development';
 import SigninSignUp from './components/SigninSignUp';
 import AdimAdd from './components/AdimAdd';
 import DeleteMovie from './components/DeleteMovie';
@@ -13,6 +13,10 @@ import AcceptUser from "./components/AcceptUser";
 import MovieGenres from "./components/Moviegenres";
 import Aboutus from "./components/Aboutus";
 import TicketBooking from "./components/TicketBooking";
+import UserProfile from "./components/UserProfile";
+import ViewmyBookings from "./components/ViewmyBookings";
+
+
 
 const App = () => {
   return (
@@ -37,6 +41,8 @@ const App = () => {
           <Route path="/acceptuser" element={<AcceptUser />} />
           <Route path="/smovie" element={<SingleMovie />} />
           <Route path="/ticketbooking" element={<TicketBooking />} />
+          <Route path="/userprofile" element={<UserProfile />} />
+          <Route path="/viewmytickets" element={<ViewmyBookings />} />
         </Routes>
       </BrowserRouter>
     </div>

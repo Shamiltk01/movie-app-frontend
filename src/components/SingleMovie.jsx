@@ -120,6 +120,11 @@ const SingleMovie = () => {
     date:"",
     time:"",
   })
+  
+  const handleProfileClick =()=>
+  {
+    navigate("/userprofile")
+  }
 
    const handleChange = (e) => {
      const { name, value } = e.target;
@@ -157,14 +162,24 @@ const SingleMovie = () => {
           <img src={logo} alt="" className="logo" />
         </Link>
         {loggedIn && sessionId ? (
-          <button
-            type="button"
-            onClick={() => {
-              logout();
-            }}
-          >
-            LogOut
-          </button>
+           <div>
+           <button
+             type="button"
+             onClick={() => {
+               handleProfileClick();
+             }}
+           >
+             My Profile
+           </button>
+           <button
+             type="button"
+             onClick={() => {
+               logout();
+             }}
+           >
+             Logout
+           </button>
+         </div>
         ) : (
           <Link to="/signin">
             <button type="button">Login / Register</button>
