@@ -86,7 +86,7 @@ const ViewmyBookings = () => {
             </div>
             {/* Download button for each booking card */}
             <button className="download-button" onClick={() => handleDownload(index)}>
-              Download Booking Card
+              Download Ticket
             </button>
           </div>
         ))

@@ -20,7 +20,7 @@
   text-align: center;
   width: 80%; /* Optionally adjust the width */
   max-width: 400px; /* Set maximum width for responsiveness */
-  height: auto; /* Let the height adjust based on content */
+  height: 500px; /* Let the height adjust based on content */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -54,7 +54,7 @@
 .download-button {
   margin-top: 20px; /* Adjust spacing */
   padding: 10px 20px;
-  margin-left: 60px;
+  margin-left: 40px;
   background-color: black;
   color: #fff;
   border-radius: 5px;
