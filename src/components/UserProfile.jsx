@@ -4,16 +4,16 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const UserProfile = () => {
-  const [data, setData] = useState(null);
+  const [bookings, setBookings] = useState([]);
   const navigate = useNavigate();
 
-  const getdata = () => {
+  const fetchData = () => {
     axios
       .post("http://localhost:3001/user/viewMybookings", {
         userId: sessionStorage.getItem("sessionId"),
       })
       .then((response) => {
-        setData(response.data.data);
+        setBookings(response.data.data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -21,11 +21,10 @@ const UserProfile = () => {
   };
 
   useEffect(() => {
-    getdata();
+    fetchData();
   }, []);
 
   const handleLogout = () => {
-    // Perform logout actions (e.g., clear session storage, navigate to login page)
     sessionStorage.removeItem("sessionId"); // Clear session storage
     navigate("/smovie"); // Redirect to login page after logout
   };
@@ -33,16 +32,20 @@ const UserProfile = () => {
   const viewBookings = () => {
     navigate("/viewmytickets");
   };
+  const handleback = () => {
+    navigate("/smovie");
+  };
 
   return (
     <div className="wrapper">
       <div className="profile">
         <div className="overlay">
           <div className="about">
-            {data && data.userId && (
+            {/* Render user's name and email from the first booking (assuming there's at least one booking) */}
+            {bookings.length > 0 && (
               <>
-                <h4>Name: {data.userId.logname}</h4>
-                <span>Email: {data.userId.logemail}</span>
+                <h4>Name: {bookings[0].userId.logname}</h4>
+                <span>Email: {bookings[0].userId.logemail}</span>
               </>
             )}
           </div>
@@ -52,6 +55,9 @@ const UserProfile = () => {
             </button>
             <button className="btn-logout" onClick={handleLogout}>
               Logout
+            </button>
+            <button className="btn-prev" onClick={handleback}>
+              Go to Previous Page
             </button>
           </ul>
         </div>
