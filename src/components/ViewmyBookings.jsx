@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import QRCode from 'qrcode.react';
+import QRCode from "qrcode.react";
 import "../styles/viewmybookings.css";
 import axios from "axios";
 import html2canvas from "html2canvas";
@@ -22,7 +22,7 @@ const ViewmyBookings = () => {
       .then((response) => {
         const responseData = response.data.data;
         const filteredData = responseData.map((booking) => ({
-          movie: booking.movieId.movieName,
+          movie: sessionStorage.getItem("movieName"),
           logname: booking.userId.logname,
           logemail: booking.userId.logemail,
           date: new Date(booking.date), // Parse date string to Date object
@@ -69,23 +69,39 @@ const ViewmyBookings = () => {
         onChange={(date) => setSelectedDate(date)}
         dateFormat="dd/MM/yyyy"
         className="date-picker"
-      /> 
-      
+      />
       {/* Render multiple booking cards for the selected date */}
       {filteredBookings.length > 0 ? (
         filteredBookings.map((booking, index) => (
-          <div key={index} className="booking-card" ref={(el) => (bookingCardRefs.current[index] = el)}>
+          <div
+            key={index}
+            className="booking-card"
+            ref={(el) => (bookingCardRefs.current[index] = el)}
+          >
             <h2>My Booked Seats</h2>
-            <p><strong>Movie:</strong> {booking.movie}</p>
-            <p><strong>Date:</strong> {booking.date.toLocaleDateString()}</p>
-            <p><strong>Time:</strong> {booking.time}</p>
-            <p><strong>Ground Floor Seats:</strong> {booking.groundFloor}</p>
-            <p><strong>Balcony Seats:</strong> {booking.balcony}</p>
+            <p>
+              <strong>Movie:</strong> {booking.movie}
+            </p>
+            <p>
+              <strong>Date:</strong> {booking.date.toLocaleDateString()}
+            </p>
+            <p>
+              <strong>Time:</strong> {booking.time}
+            </p>
+            <p>
+              <strong>Ground Floor Seats:</strong> {booking.groundFloor}
+            </p>
+            <p>
+              <strong>Balcony Seats:</strong> {booking.balcony}
+            </p>
             <div className="qr-code-container">
               <QRCode value={JSON.stringify(booking)} />
             </div>
             {/* Download button for each booking card */}
-            <button className="download-button" onClick={() => handleDownload(index)}>
+            <button
+              className="download-button"
+              onClick={() => handleDownload(index)}
+            >
               Download Ticket
             </button>
           </div>
@@ -93,13 +109,12 @@ const ViewmyBookings = () => {
       ) : (
         <p>No bookings found for the selected date</p>
       )}
-
       {/* Position the "Go back" button at the top left */}
       <button className="back-button" onClick={handleGoBack}>
         Go back to My Profile
       </button>
     </div>
   );
-}
+};
 
 export default ViewmyBookings;
