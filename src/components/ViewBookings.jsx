@@ -17,7 +17,9 @@ const ViewBookings = () => {
       alert("please provide date and time");
     }
     axios
-      .post("http://localhost:3001/booking/viewSeats", input)
+      .post("http://localhost:3001/booking/viewSeats", input, {
+        headers: { token: sessionStorage.getItem("token") },
+      })
       .then((response) => {
         setBookings(response.data.data);
       })

@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import homelogo from '../images/home.png'
+import homelogo from "../images/home.png";
 
 const SigninSignUp = () => {
   const navigate = useNavigate();
@@ -26,11 +26,14 @@ const SigninSignUp = () => {
 
   const signInGet = () => {
     axios.post("http://localhost:3001/user/signin", input).then((response) => {
+      console.log(response.data)
       if (response.data.status === "user success") {
         sessionStorage.setItem("sessionId", response.data.userData._id);
+        sessionStorage.setItem("token", response.data.token);
         navigate("/smovie");
       } else if (response.data.status === "admin success") {
         sessionStorage.setItem("sessionId", response.data.adminData._id);
+        sessionStorage.setItem("token", response.data.token);
         navigate("/acceptuser");
       } else {
         alert(response.data.status);
@@ -43,6 +46,7 @@ const SigninSignUp = () => {
     });
   };
 
+
   const [isSignUp, setIsSignUp] = useState(false);
 
   const toggleForm = () => {
@@ -52,10 +56,7 @@ const SigninSignUp = () => {
   return (
     <div className={`section full-height ${isSignUp ? "signup-mode" : ""}`}>
       <Link to="/" className="logo">
-        <img
-          src={homelogo}
-          alt=""
-        />
+        <img src={homelogo} alt="" />
       </Link>
 
       <div className="container">

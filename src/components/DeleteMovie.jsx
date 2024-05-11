@@ -12,7 +12,9 @@ const DeleteMovie = () => {
 
   const handleDeleteMovie = () => {
     axios
-      .post("http://localhost:3001/movie/delete", input)
+      .post("http://localhost:3001/movie/delete", input, {
+        headers: { token: sessionStorage.getItem("token") },
+      })
       .then((response) => {
         if (response.data.status === "success") {
           alert(response.data.message);

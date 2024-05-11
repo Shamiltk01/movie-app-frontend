@@ -107,7 +107,6 @@ const SingleMovie = () => {
     }
   }, [sessionId]);
 
-
   const navigate = useNavigate();
   const getTicket = () => {
     navigate("/ticketbooking");
@@ -116,45 +115,46 @@ const SingleMovie = () => {
     sessionStorage.clear();
     navigate("/");
   };
-  const [input,setInput]=useState({
-    date:"",
-    time:"",
-  })
-  
-  const handleProfileClick =()=>
-  {
-    navigate("/userprofile")
-  }
+  const [input, setInput] = useState({
+    date: "",
+    time: "",
+  });
 
-   const handleChange = (e) => {
-     const { name, value } = e.target;
-     setInput((prevInput) => ({
-       ...prevInput,
-       [name]: value,
-     }));
-   };
+  const handleProfileClick = () => {
+    navigate("/userprofile");
+  };
 
-   // Calculate the current date
-   const currentDate = new Date();
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setInput((prevInput) => ({
+      ...prevInput,
+      [name]: value,
+    }));
+  };
 
-   // Calculate the date 7 days from now
-   const nextWeekDate = new Date();
-   nextWeekDate.setDate(currentDate.getDate() + 7);
+  // Calculate the current date
+  const currentDate = new Date();
 
-  const handleSubmit=()=>{
+  // Calculate the date 7 days from now
+  const nextWeekDate = new Date();
+  nextWeekDate.setDate(currentDate.getDate() + 7);
+
+  const handleSubmit = () => {
     axios
-      .post("http://localhost:3001/booking/viewSeats", input)
+      .post("http://localhost:3001/booking/viewSeats", input, {
+        headers: { token: sessionStorage.getItem("token") },
+      })
       .then((response) => {
         if (response.data.status === "success") {
-          sessionStorage.setItem("movieDate",input.date)
-          sessionStorage.setItem("movieTime",input.time)
+          sessionStorage.setItem("movieDate", input.date);
+          sessionStorage.setItem("movieTime", input.time);
           getTicket();
         } else {
           alert(response.data.status);
         }
       });
-  }
-  console.log(input)
+  };
+  console.log(input);
   return (
     <div className={`hero ${isTrailerPlaying ? "trailer-playing" : ""}`}>
       <div className="navbar">
@@ -162,24 +162,24 @@ const SingleMovie = () => {
           <img src={logo} alt="" className="logo" />
         </Link>
         {loggedIn && sessionId ? (
-           <div>
-           <button
-             type="button"
-             onClick={() => {
-               handleProfileClick();
-             }}
-           >
-             My Profile
-           </button>
-           <button
-             type="button"
-             onClick={() => {
-               logout();
-             }}
-           >
-             Logout
-           </button>
-         </div>
+          <div>
+            <button
+              type="button"
+              onClick={() => {
+                handleProfileClick();
+              }}
+            >
+              My Profile
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                logout();
+              }}
+            >
+              Logout
+            </button>
+          </div>
         ) : (
           <Link to="/signin">
             <button type="button">Login / Register</button>
@@ -243,6 +243,7 @@ const SingleMovie = () => {
                 {movieDetails.title} ({movieDetails.release_date.split("-")[0]})
               </h1>
               <p>
+                
                 <b>Genres</b>:{" "}
                 {movieDetails.genres.map((genre) => genre.name).join(", ")}{" "}
                 &nbsp;&nbsp;&nbsp;&nbsp;

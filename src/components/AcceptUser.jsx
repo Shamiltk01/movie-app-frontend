@@ -5,25 +5,37 @@ import Navi from "./Navi";
 const AcceptUser = () => {
   const [data, setData] = new useState([]);
   const getData = () => {
-    axios.get("http://localhost:3001/admin/viewallreq").then((response) => {
-      setData(response.data.userData);
-    });
+    axios
+      .get("http://localhost:3001/admin/viewallreq", {
+        headers: { token: sessionStorage.getItem("token") },
+      })
+      .then((response) => {
+        setData(response.data.userData);
+      });
   };
   useEffect(() => {
     getData();
   }, []);
 
   const rejectUser = (id) => {
-    axios.put(`http://localhost:3001/admin/reject/${id}`).then((response) => {
-      alert(response.data.status);
-      getData();
-    });
+    axios
+      .put(`http://localhost:3001/admin/reject/${id}`, {
+        headers: { token: sessionStorage.getItem("token") },
+      })
+      .then((response) => {
+        alert(response.data.status);
+        getData();
+      });
   };
   const acceptUser = (id) => {
-    axios.put(`http://localhost:3001/admin/accept/${id}`).then((response) => {
-      alert(response.data.status);
-      getData();
-    });
+    axios
+      .put(`http://localhost:3001/admin/accept/${id}`, {
+        headers: { token: sessionStorage.getItem("token") },
+      })
+      .then((response) => {
+        alert(response.data.status);
+        getData();
+      });
   };
   return (
     <div>

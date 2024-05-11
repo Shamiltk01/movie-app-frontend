@@ -17,16 +17,22 @@ const AdimAdd = () => {
     setUpcomingMovie({ ...input, [e.target.name]: e.target.value });
   };
   const readValues = () => {
-    axios.post("http://localhost:3001/movie/add", input).then((response) => {
-      alert(response.data.status);
-      setInput({
-        movieName: "",
+    axios
+      .post("http://localhost:3001/movie/add", input, {
+        headers: { token: sessionStorage.getItem("token") },
+      })
+      .then((response) => {
+        alert(response.data.status);
+        setInput({
+          movieName: "",
+        });
       });
-    });
   };
   const handleUpdateMovie = () => {
     axios
-      .post("http://localhost:3001/movie/upcomingMovie", upcomingMovie)
+      .post("http://localhost:3001/movie/upcomingMovie", upcomingMovie, {
+        headers: { token: sessionStorage.getItem("token") },
+      })
       .then((response) => {
         if (response.data.status === "success") {
           alert(response.data.status);

@@ -16,9 +16,13 @@ const ViewmyBookings = () => {
 
   const fetchData = () => {
     axios
-      .post("http://localhost:3001/user/viewMybookings", {
-        userId: sessionStorage.getItem("sessionId"),
-      })
+      .post(
+        "http://localhost:3001/user/viewMybookings",
+        {
+          userId: sessionStorage.getItem("sessionId"),
+        },
+        { headers: { token: sessionStorage.getItem("token") } }
+      )
       .then((response) => {
         const responseData = response.data.data;
         const filteredData = responseData.map((booking) => ({

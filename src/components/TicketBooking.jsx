@@ -573,7 +573,7 @@ const TicketBooking = () => {
   const [showDate, setShowDate] = useState("");
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [seats, setSeats] = useState([]);
-  const [userId,setUserId]=useState("")
+  const [userId, setUserId] = useState("");
 
   const handleSeatClick = (rowIndex, seatIndex, location) => {
     let seatName;
@@ -629,14 +629,18 @@ const TicketBooking = () => {
       sessionStorage.setItem("balconySeats", balcony.join(","));
 
       axios
-        .post("http://localhost:3001/booking/book", {
-          userId: sessionStorage.getItem("sessionId"),
-          movieId:sessionStorage.getItem("movieId"),
-          date: sessionStorage.getItem("movieDate"),
-          time: sessionStorage.getItem("movieTime"),
-          groundFloor: groundFloor.join(","),
-          balcony: balcony.join(","),
-        })
+        .post(
+          "http://localhost:3001/booking/book",
+          {
+            userId: sessionStorage.getItem("sessionId"),
+            movieId: sessionStorage.getItem("movieId"),
+            date: sessionStorage.getItem("movieDate"),
+            time: sessionStorage.getItem("movieTime"),
+            groundFloor: groundFloor.join(","),
+            balcony: balcony.join(","),
+          },
+          { headers: { token: sessionStorage.getItem("token") } }
+        )
         .then((response) => {
           alert(
             `${bookedSeatsText} on ${sessionStorage.getItem(
@@ -651,7 +655,6 @@ const TicketBooking = () => {
         });
     }
   };
-
 
   const clearSelection = () => {
     setSelectedSeats([]);
@@ -701,7 +704,6 @@ const TicketBooking = () => {
         time: sessionStorage.getItem("movieTime"),
       })
       .then((response) => {
-        
         const balconySeats = response.data.data.map(
           (seat) => `Balcony - ${seat.balcony}`
         );
@@ -720,7 +722,6 @@ const TicketBooking = () => {
   useEffect(() => {
     fetchSeats();
   }, []);
-
 
   return (
     <div className="bodybooking">
@@ -758,7 +759,7 @@ const TicketBooking = () => {
       </div>
       <div
         className="screen-line"
-        style={{ textAlign: "center", paddingTop: "10px" ,marginTop:"30px"}}
+        style={{ textAlign: "center", paddingTop: "10px", marginTop: "30px" }}
       >
         <h6>Screen</h6>
       </div>{" "}
