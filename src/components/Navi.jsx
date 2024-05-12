@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom/dist/umd/react-router-dom.development";
 
 const Navi = () => {
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = useState(false);
   const sessionId = sessionStorage.getItem("sessionId");
   useEffect(() => {
@@ -11,10 +11,10 @@ const Navi = () => {
       setLoggedIn(true);
     }
   });
-  const logout=()=>{
-    sessionStorage.clear()
-    navigate("/signin")
-  }
+  const logout = () => {
+    sessionStorage.clear();
+    navigate("/signin");
+  };
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-gradient">

@@ -243,7 +243,6 @@ const SingleMovie = () => {
                 {movieDetails.title} ({movieDetails.release_date.split("-")[0]})
               </h1>
               <p>
-                
                 <b>Genres</b>:{" "}
                 {movieDetails.genres.map((genre) => genre.name).join(", ")}{" "}
                 &nbsp;&nbsp;&nbsp;&nbsp;
