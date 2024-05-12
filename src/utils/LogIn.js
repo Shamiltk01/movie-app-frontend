@@ -1,9 +1,18 @@
 import React from "react";
 import { Outlet } from "react-router-dom/dist/umd/react-router-dom.development";
-import AcceptUser from "../components/AcceptUser";
-import UserProfile from "../components/UserProfile";
+import { Navigate } from "react-router-dom";
 
 export const LogIn = () => {
   let auth = sessionStorage.getItem("authenticated");
-  return auth === "admin" ? <AcceptUser /> : <Outlet />;
+  return (
+    <div>
+      {auth === "admin" ? (
+        <Navigate to="/acceptuser" />
+      ) : auth === "user" ? (
+        <Navigate to="/userprofile" />
+      ) : (
+        <Outlet />
+      )}
+    </div>
+  );
 };
