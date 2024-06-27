@@ -35,7 +35,7 @@ const Card2 = () => {
               "https://api.themoviedb.org/3/search/movie",
               {
                 params: {
-                  api_key: "775ffc67f20ef642f55ceb576824b014",
+                  api_key: "1814017cc875e1d5311c75d2f235f87d",
                   language: "en-US",
                   query: name,
                 },
@@ -122,6 +122,7 @@ const Card2 = () => {
           padding: 0.5rem 1rem;
           border-radius: 25px;
           cursor: pointer;
+          margin-left: auto;
           position: absolute;
           z-index: 999;
           font-size: 13px;
