@@ -28,7 +28,7 @@ const App = () => {
             element={
               <>
                 <Intro />
-                <MovieGenres />
+                
                 <Aboutus />
                 <Card2 />
               </>
