@@ -10,7 +10,8 @@
     background-size: cover;
     background-position: center;
     position: relative;
-    overflow: hidden;
+    
+    overflow-y: auto; 
 
 }
 
@@ -43,6 +44,7 @@ button {
     cursor: pointer;
     margin-left: 5px;
     margin-right: 50px;
+    
 }
 .buttonprofile {
     color: #fbfcfd;
@@ -53,7 +55,7 @@ button {
     outline: none;
     cursor: pointer;
     margin: 6px;
-    display: inline-block;
+    display: contents;
 
 }
 /* .profilebtn
@@ -85,7 +87,7 @@ button:hover {
 h1 {
     font-size: 50px;
     /* margin: -50px 0 30px; */
-    line-height: 60px;
+    line-height: 40px;
     font-family: "sans-serif";
     font-weight: bold;
     text-shadow: 2px 2px #000000;
@@ -104,7 +106,7 @@ h5 {
 .dateandtime
     {
         
-        margin-top: -300px;
+        margin-top: -390px;
 
     }
 
@@ -337,7 +339,7 @@ p {
     /* Add margin to separate buttons from movie details */
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 397px) {
     .movie-poster {
         width: 230px;
         /* Adjust the width of the poster */
@@ -374,8 +376,9 @@ p {
     }
     .dateandtime
     {
-        margin-left: -230px;
+        margin-left: -250px;
         margin-top: -800px;
+        z-index: 10;
         
     }
     p {
@@ -387,6 +390,107 @@ p {
     h1 {
         font-size:25px;
         margin-top: 18px;
+        /* margin: -50px 0 30px; */
+        line-height: 60px;
+        font-family: "sans-serif";
+        font-weight: bold;
+        text-shadow: 2px 2px #000000;
+    
+    }
+    
+    h5 {
+        font-size: 20px;
+        margin: -50px 0 px;
+        line-height: 60px;
+        font-family: "sans-serif";
+        font-weight: bold;
+        text-shadow: 2px 2px #000000;
+    
+    }.video-player {
+        margin-top: -350px;
+        
+        top: 70%;
+        left: 60%;
+    
+    }
+    button {
+        color: #fbfcfd;
+        padding: 0px 20px;
+        background: transparent;
+        border: 1px solid #fff;
+        border-radius: 20px;
+        outline: none;
+        cursor: pointer;
+        margin: 7px;
+        margin-left: 45px;
+        font-size: x-small;
+        
+    }
+    .mov
+{
+margin-top: -200px;
+}
+.trailer-container {
+    position:relative;
+    width: 95%;
+    margin-top: 475px;
+    transform: translateY(-50%);
+}
+   
+    
+}
+@media screen and (min-width: 398px) and (max-width: 820px) {
+    .movie-poster {
+        width: 230px;
+        /* Adjust the width of the poster */
+        height: auto;
+        /* Maintain aspect ratio */
+        margin-right: 0px;
+        /* Add margin to separate poster from movie details */
+        margin-top: -405px;
+        margin-left: 35px;
+    }
+    
+    /* Adjust the movie details layout */
+    .movie-details {
+        display: flex;
+        align-items: baseline;
+        /* Align items vertically */
+    }
+    
+    .movie-info {
+        margin-top: 520px;
+        font-size: 10px;
+        /* Add margin to separate movie poster from movie details */
+    }
+    
+    
+    .movie-info h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    
+    .movie-info button {
+        margin-top: 180px;
+        /* Add margin to separate buttons from movie details */
+    }
+    .dateandtime
+    {
+        margin-left: -230px;
+        margin-top: -800px;
+        z-index: 10;
+        
+    }
+    p {
+        font-size: 13px;
+        font-family: sans-serif;
+        text-shadow: 0.5px 0.5px antiquewhite;
+        
+    }
+    h1 {
+        font-size:25px;
+        
         /* margin: -50px 0 30px; */
         line-height: 60px;
         font-family: "sans-serif";
@@ -432,10 +536,7 @@ margin-top: -200px;
     margin-top: 475px;
     transform: translateY(-50%);
 }
-   
-    
-}
-@media screen and (min-width: 500px) and (max-width: 820px) {
+@media screen and (min-width:0px) and (max-width: 369px) {
     .movie-poster {
         width: 230px;
         /* Adjust the width of the poster */
@@ -472,8 +573,9 @@ margin-top: -200px;
     }
     .dateandtime
     {
-        margin-left: -230px;
+        margin-left: -250px;
         margin-top: -800px;
+        z-index: 10;    
         
     }
     p {
@@ -517,7 +619,8 @@ margin-top: -200px;
         outline: none;
         cursor: pointer;
         margin: 7px;
-        margin-left: 35px;
+        margin-left: 45px;
+        font-size: x-small;
         
     }
     .mov
@@ -531,5 +634,8 @@ margin-top: -200px;
     transform: translateY(-50%);
 }
    
+    
+}
+
     
 }
