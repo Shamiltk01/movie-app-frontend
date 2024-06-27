@@ -170,7 +170,7 @@ const SingleMovie = () => {
                handleProfileClick();
              }}
            >
-             My Profile
+             My Profile &nbsp;&nbsp;
            </button>
            <button
              type="button"
@@ -278,8 +278,8 @@ const SingleMovie = () => {
                 Watch Trailer &nbsp;
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
+                  width="10"
+                  height="10"
                   fill="currentColor"
                   className="bi bi-play-circle"
                   viewBox="0 0 16 16"
