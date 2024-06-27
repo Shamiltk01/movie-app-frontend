@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios'; // Import axios for API requests
 import Card2 from './Card2'; // Import Cards2 component
 import Aboutus from './Aboutus'; // Import Aboutus component
+import MovieGenres from './Moviegenres';
 
 const Intro = () => {
   const [moviePosters, setMoviePosters] = useState([]); // State to store fetched movie posters
@@ -14,7 +15,7 @@ const Intro = () => {
       try {
         const response = await axios.get('https://api.themoviedb.org/3/discover/movie', {
           params: {
-            api_key: '775ffc67f20ef642f55ceb576824b014',
+            api_key: '1814017cc875e1d5311c75d2f235f87d',
             language: 'hi-IN', // Specify language code for Hindi
             region: 'IN', // Specify region code for India
             with_original_language: 'ml', // Filter by original language (Hindi)
@@ -52,9 +53,8 @@ const Intro = () => {
   };
 
   const handleFeaturesClick = () => {
-    if (aboutUsRef.current) {
-      aboutUsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    // Scroll to the end of the page
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
   };
 
   return (
@@ -65,17 +65,17 @@ const Intro = () => {
             <div className="row g-0">
               <div className="col-md-8">
                 <div className="card-body" style={{color: 'white', fontFamily: 'Arial, sans-serif' ,marginTop:'70px'}}>
-                  <h1 className="card-title" style={{ fontSize: '5rem', lineHeight: '1.2', marginBottom: '20px', fontFamily: 'Arial, sans-serif' }}>Welcome to <br /> Sagarika!</h1>
+                  <h1 className="card-title" style={{ fontSize: '4rem', lineHeight: 'normal', marginBottom: '20px', fontFamily: 'Arial, sans-serif' }}>Welcome to <br /> Sagarika!</h1>
                   <p style={{marginTop: '50px ',marginBottom:'70px', fontFamily: 'Arial, sans-serif' }}>Experience the magic of cinema. Book your tickets now for an unforgettable movie night.</p>
-                  <div style={{ display: 'flex',alignItems: 'center', marginTop: '90px',marginBottom:'40px' }}>
-                    <button className="btn1  me-3" style={{ width: '200px',  borderRadius: '50px'}} onClick={handleScroll}>View Movies</button>
-                    <button className="btn1 me-3" style={{ width: '200px',borderRadius: '50px' }} onClick={handleFeaturesClick}>Features</button>
+                  <div style={{display:'ruby', alignItems: 'center', marginTop: '90px',marginBottom:'40px' }}>
+                    <button className="btn1  me-3" style={{ width: '200px',  borderRadius: '50px'}} onClick={handleScroll}>Features</button>
+                    <button className="btn1 me-3" style={{ width: '200px',borderRadius: '50px' }} onClick={handleFeaturesClick}>View Movies</button>
                   </div>
                 </div>
               </div>
               <div className="col-md-4">
                 <div className="row">
-                  <div className="col mb-3">
+                  <div className="col mb-3" >
                     <img
                       src={`https://image.tmdb.org/t/p/w500/${moviePosters[currentPosterIndex]}`} // Use the poster path
                       className="img-fluid rounded-start"
@@ -89,10 +89,12 @@ const Intro = () => {
           </div>
         </div>
       </div>
-      <div ref={cards2Ref} id="Card2">
-        {/* You can render additional content below the movie posters if needed */}
+      <div  ref={cards2Ref} id="Card2">
+      <MovieGenres/>
+      
       </div>
-      <div ref={aboutUsRef} /> {/* Render the Aboutus component and assign the ref */}
+      <div ref={aboutUsRef} /> 
+      {/* Render the Aboutus component and assign the ref */}
     </div>
   );
 };
